@@ -14,15 +14,18 @@ module.exports = (app) => {
   //   return guestController.homeGet(req, res);
   // });
 
-  app.get('/products/:category', cors(), guestController.productsGet);
+  // app.options('*', cors());
+
+  app.get('/products/:category', guestController.productsGet);
 
 
   // app.post('/', redirectIfNotLogged, userController.homePost);
 
   // app.get('/register', guestController.registerGet);
-  // app.post('/register', guestController.registerPost);
+  app.post('/register', guestController.registerPost);
   // app.get('/login', guestController.loginGet);
-  // app.post('/login', guestController.loginPost);
+
+  app.post('/login', guestController.loginPost);
 
   // app.get('/course/create', redirectIfNotLogged, userController.createCourseGet);
   // app.post('/course/create', redirectIfNotLogged, userController.createCoursePost);

@@ -19,6 +19,7 @@ class ProductsList extends Component {
       .catch((err) => console.log(err));
   }
 
+  // on props change...
   componentDidUpdate(nextProps) {
     const { category } = this.props;
     if (category !== nextProps.category) {

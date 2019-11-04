@@ -5,13 +5,10 @@ const jwt = require('jsonwebtoken');
 const UserModel = require('../models/User');
 const ProductModel = require('../models/Product');
 const { saltRounds, jwtSecret } = require('../config/config');
-const showNotification = require('../utils/showNotification');
+// const showNotification = require('../utils/showNotification');
 
 module.exports = {
-  // homeGet: (req, res) => {
-    
-  // },
-
+ 
   productsGet: (req, res) => {
     const { category } = req.params;
 
@@ -22,50 +19,8 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
-  // registerGet: (req, res) => {
-  //   res.render('user/register');
-  // },
-
   registerPost: (req, res) => {
     const { username, password, repeatPassword } = req.body;
-
-    // validations
-    const regex = new RegExp('^[a-zA-Z0-9]+$');
-
-    if (username.length < 5 || !regex.test(username)) {
-      showNotification(req, res,
-        'user/register',
-        'The username should be at least 5 characters long and should consist only english letters and digits.',
-        {
-          username,
-          password,
-          repeatPassword,
-        }
-      );
-      return;
-    } else if (password.length < 5 || !regex.test(password)) {
-      showNotification(req, res,
-        'user/register',
-        'The password should be at least 5 characters long and should consist only english letters and digits.',
-        {
-          username,
-          password,
-          repeatPassword,
-        }
-      );
-      return;
-    } else if (password !== repeatPassword) {
-      showNotification(req, res,
-        'user/register',
-        'The repeat password should be equal to the password',
-        {
-          username,
-          password,
-          repeatPassword,
-        }
-      );
-      return;
-    }
 
     // hash the password
     bcrypt.genSalt(saltRounds)

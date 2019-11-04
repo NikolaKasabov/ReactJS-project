@@ -2,6 +2,7 @@ const express = require('express');
 // const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const ifLoggedAddUserToReq = require('../middlewares/ifLoggedAddUserToReq');
 
@@ -19,6 +20,9 @@ module.exports = (app) => {
 
   // Register 'cookie-parser' middleware
   app.use(cookieParser());
+
+  // Register middleware to enable CORS requests
+  app.use(cors());
 
   // Register middleware for 'log in' check
   app.use(ifLoggedAddUserToReq);
