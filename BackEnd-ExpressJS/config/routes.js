@@ -1,3 +1,5 @@
+const cors = require('cors');
+
 const guestController = require('../controllers/guestController');
 const userController = require('../controllers/userController');
 
@@ -12,7 +14,7 @@ module.exports = (app) => {
   //   return guestController.homeGet(req, res);
   // });
 
-  app.get('/products/:category', guestController.productsGet);
+  app.get('/products/:category', cors(), guestController.productsGet);
 
 
   // app.post('/', redirectIfNotLogged, userController.homePost);
