@@ -18,7 +18,6 @@ module.exports = (app) => {
 
   app.get('/products/:category', guestController.productsGet);
 
-
   // app.post('/', redirectIfNotLogged, userController.homePost);
 
   // app.get('/register', guestController.registerGet);

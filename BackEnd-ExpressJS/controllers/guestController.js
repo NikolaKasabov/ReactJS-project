@@ -48,7 +48,7 @@ module.exports = {
       .then((userData) => {
         // if username is invalid
         if (!userData) {
-          res.redirect('/login');
+          res.json({error: 'Invalid data.'});
           return;
         }
 
@@ -57,7 +57,7 @@ module.exports = {
           .then((isPassValid) => {
             // if password is invalid
             if (!isPassValid) {
-              res.redirect('/login');
+              res.json({ error: 'Invalid data.' });
               return;
             }
 
@@ -67,7 +67,7 @@ module.exports = {
               username: userData.username,
             }, jwtSecret);
             res.cookie('jwt', token);
-            res.redirect('/');
+            // res.redirect('/');
           })
           .catch((err) => console.log(err));
       })
