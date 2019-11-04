@@ -3,38 +3,28 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const UserModel = require('../models/User');
-const CourseModel = require('../models/Course');
+const ProductModel = require('../models/Product');
 const { saltRounds, jwtSecret } = require('../config/config');
 const showNotification = require('../utils/showNotification');
 
 module.exports = {
-  homeGet: (req, res) => {
-    CourseModel.aggregate([
-      { '$match': { 'isPublic': true } },
-      {
-        '$project': {
-          'title': 1,
-          'isPublic': 1,
-          'description': 1,
-          'imageUrl': 1,
-          'creatorId': 1,
-          'createdAt': 1,
-          'usersEnrolled': 1,
-          'usersEnrolledCount': { '$size': '$usersEnrolled' }
-        }
-      },
-      { '$sort': { 'usersEnrolledCount': -1 } },
-      { '$limit': 3 }
-    ])
-      .then((courses) => {
-        res.render('home/guest-home', { courses });
+  // homeGet: (req, res) => {
+    
+  // },
+
+  productsGet: (req, res) => {
+    const { category } = req.params;
+
+    ProductModel.find({category})
+      .then((products) => {
+        res.json(products);
       })
       .catch((err) => console.log(err));
   },
 
-  registerGet: (req, res) => {
-    res.render('user/register');
-  },
+  // registerGet: (req, res) => {
+  //   res.render('user/register');
+  // },
 
   registerPost: (req, res) => {
     const { username, password, repeatPassword } = req.body;
@@ -91,9 +81,9 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
-  loginGet: (req, res) => {
-    res.render('user/login');
-  },
+  // loginGet: (req, res) => {
+  //   res.render('user/login');
+  // },
 
   loginPost: (req, res) => {
     const { username, password } = req.body;

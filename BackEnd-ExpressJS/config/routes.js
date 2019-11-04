@@ -4,13 +4,17 @@ const userController = require('../controllers/userController');
 const redirectIfNotLogged = require('../middlewares/redirectIfNotLogged');
 
 module.exports = (app) => {
-  app.get('/', (req, res) => {
-    if (req.userData) {
-      return userController.homeGet(req, res);
-    }
+  // app.get('/', (req, res) => {
+  //   if (req.userData) {
+  //     return userController.homeGet(req, res);
+  //   }
 
-    return guestController.homeGet(req, res);
-  });
+  //   return guestController.homeGet(req, res);
+  // });
+
+  app.get('/products/:category', guestController.productsGet);
+
+
   // app.post('/', redirectIfNotLogged, userController.homePost);
 
   // app.get('/register', guestController.registerGet);

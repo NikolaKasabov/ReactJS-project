@@ -26,9 +26,7 @@ const userSchema = new mongoose.Schema({
     },
   },
 
-  enrolledCourses: [{ type: mongoose.Types.ObjectId, ref: 'Courses' }],
-
-  salt: { type: String },
+  shoppingCart: [{ type: mongoose.Types.ObjectId, ref: 'Products' }],
 });
 
 module.exports = mongoose.model('Users', userSchema);
