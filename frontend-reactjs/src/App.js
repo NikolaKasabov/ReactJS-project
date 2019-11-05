@@ -34,6 +34,10 @@ class App extends Component {
   }
 
   render() {
+
+    let greeting = '';
+    if (this.state.loggedUsername) greeting = <div>Welcome {this.state.loggedUsername}</div>;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -44,6 +48,8 @@ class App extends Component {
           <button onClick={this.changeProductCategory} name="tv">Телевизори</button>
           <button onClick={this.changeProductCategory} name="laptop">Лаптопи</button>
           <button onClick={this.changeProductCategory} name="phone">Телефони</button>
+
+          {greeting}
         </header>
 
         <main>
