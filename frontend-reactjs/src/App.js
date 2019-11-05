@@ -43,7 +43,6 @@ class App extends Component {
         <header className="App-header">
           <RegisterForm />
           <LoginForm addUsernameToApp={this.addLoggedUsernameToState}/>
-          {/* <LoginForm /> */}
 
           <button onClick={this.changeProductCategory} name="tv">Телевизори</button>
           <button onClick={this.changeProductCategory} name="laptop">Лаптопи</button>

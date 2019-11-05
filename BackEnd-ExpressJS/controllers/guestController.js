@@ -5,10 +5,8 @@ const jwt = require('jsonwebtoken');
 const UserModel = require('../models/User');
 const ProductModel = require('../models/Product');
 const { saltRounds, jwtSecret } = require('../config/config');
-// const showNotification = require('../utils/showNotification');
 
 module.exports = {
-
   productsGet: (req, res) => {
     const { category } = req.params;
 
