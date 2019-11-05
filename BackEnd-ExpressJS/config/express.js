@@ -21,9 +21,10 @@ module.exports = (app) => {
   // Register 'cookie-parser' middleware
   app.use(cookieParser());
 
-  // Register middleware to enable CORS requests
-  app.use(cors());
-
   // Register middleware for 'log in' check
   app.use(ifLoggedAddUserToReq);
+  
+  // Register middleware to enable CORS requests
+  app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+
 };

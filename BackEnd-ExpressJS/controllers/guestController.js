@@ -36,10 +36,6 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
-  // loginGet: (req, res) => {
-  //   res.render('user/login');
-  // },
-
   loginPost: (req, res) => {
     const { username, password } = req.body;
 
@@ -48,8 +44,8 @@ module.exports = {
       .then((userData) => {
         // if username is invalid
         if (!userData) {
-          res.json({error: 'Invalid data.'});
-          return;
+          res.status('401')
+            .send('Invalid data.');
         }
 
         // check if password is valid
@@ -57,8 +53,8 @@ module.exports = {
           .then((isPassValid) => {
             // if password is invalid
             if (!isPassValid) {
-              res.json({ error: 'Invalid data.' });
-              return;
+              res.status('401')
+                .send('Invalid data.');
             }
 
             // create jwt and save it in a cookie
@@ -66,8 +62,8 @@ module.exports = {
               userId: userData._id,
               username: userData.username,
             }, jwtSecret);
-            res.cookie('jwt', token);
-            // res.redirect('/');
+            res.cookie('jwt', token)
+              .send('cookie sent');            
           })
           .catch((err) => console.log(err));
       })

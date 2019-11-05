@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+// import { withCookies } from 'react-cookie';
+
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
 import ProductsList from './components/product-list/ProductsList';
@@ -44,3 +46,4 @@ class App extends Component {
 }
 
 export default App;
+// export default withCookies(App);

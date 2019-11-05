@@ -22,14 +22,23 @@ class LoginForm extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
+    // send POST request to express server with the login data, and get a cookie with jwt
     fetch('http://localhost:5000/login', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+
+      withCredentials: true,   // for cookies to save
+      credentials: 'include',  // for cookies to save
+
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
       }),
-    });
+    }).catch((err) => console.log(err));
   }
 
   render() {

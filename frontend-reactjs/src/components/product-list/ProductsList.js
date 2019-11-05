@@ -11,18 +11,24 @@ class ProductsList extends Component {
   }
 
   fetchProductsAndAddToState(category) {
-    fetch(`http://localhost:5000/products/${category}`)
+    fetch(`http://localhost:5000/products/${category}`, {
+      // method: "GET",
+      // headers: {
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'application/json',
+      //   'Cache': 'no-cache'
+      // },
+      credentials: 'include', // without this react will NOT send the cookie with the request
+    })
       .then((dataAsReadableStream) => dataAsReadableStream.json())
-      .then((dataAsJson) => {
-        this.setState({ products: dataAsJson })
-      })
+      .then((dataAsJson) => this.setState({ products: dataAsJson }))
       .catch((err) => console.log(err));
   }
 
   // on props change...
-  componentDidUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     const { category } = this.props;
-    if (category !== nextProps.category) {
+    if (category !== prevProps.category) {
       this.fetchProductsAndAddToState(category);
     }
   }
