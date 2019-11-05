@@ -19,6 +19,7 @@ class LoginForm extends Component {
     this.setState({ [inputName]: inputValue });
   }
 
+  // login user
   onFormSubmit(event) {
     event.preventDefault();
 
@@ -26,8 +27,8 @@ class LoginForm extends Component {
     fetch('http://localhost:5000/login', {
       method: 'POST',
 
-      withCredentials: true,   // for cookies to save
-      credentials: 'include',  // for cookies to save
+      withCredentials: true,   // for cookies to save to the browser
+      credentials: 'include',  // for cookies to save to the browser
 
       headers: {
         'Accept': 'application/json',
@@ -38,7 +39,14 @@ class LoginForm extends Component {
         username: this.state.username,
         password: this.state.password,
       }),
-    }).catch((err) => console.log(err));
+    })
+      .then((result) => {
+        if (result.status === 200) {
+          // add logged user name to the App component's state
+          this.props.addUsernameToApp();
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {

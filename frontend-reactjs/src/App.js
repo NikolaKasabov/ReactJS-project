@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 // import { withCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
@@ -10,17 +11,25 @@ import ProductsList from './components/product-list/ProductsList';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.onButtonClick = this.onButtonClick.bind(this);
+    this.changeProductCategory = this.changeProductCategory.bind(this);
+    this.addLoggedUsernameToState = this.addLoggedUsernameToState.bind(this);
 
     this.state = {
       chosenProductsCategory: '',
+      loggedUsername: Cookies.get('username'),
     }
   }
 
-  onButtonClick(event) {
+  changeProductCategory(event) {
     const category = event.target.name;
     this.setState({
       chosenProductsCategory: category,
+    });
+  }
+
+  addLoggedUsernameToState() {
+    this.setState({
+      loggedUsername: Cookies.get('username'),
     });
   }
 
@@ -29,11 +38,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <RegisterForm />
-          <LoginForm />
+          <LoginForm addUsernameToApp={this.addLoggedUsernameToState}/>
+          {/* <LoginForm /> */}
 
-          <button onClick={this.onButtonClick} name="tv">Телевизори</button>
-          <button onClick={this.onButtonClick} name="laptop">Лаптопи</button>
-          <button onClick={this.onButtonClick} name="phone">Телефони</button>
+          <button onClick={this.changeProductCategory} name="tv">Телевизори</button>
+          <button onClick={this.changeProductCategory} name="laptop">Лаптопи</button>
+          <button onClick={this.changeProductCategory} name="phone">Телефони</button>
         </header>
 
         <main>

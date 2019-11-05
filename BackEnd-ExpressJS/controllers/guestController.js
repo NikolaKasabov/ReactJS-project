@@ -8,11 +8,11 @@ const { saltRounds, jwtSecret } = require('../config/config');
 // const showNotification = require('../utils/showNotification');
 
 module.exports = {
- 
+
   productsGet: (req, res) => {
     const { category } = req.params;
 
-    ProductModel.find({category})
+    ProductModel.find({ category })
       .then((products) => {
         res.json(products);
       })
@@ -63,7 +63,8 @@ module.exports = {
               username: userData.username,
             }, jwtSecret);
             res.cookie('jwt', token)
-              .send('cookie sent');            
+              .cookie('username', userData.username)
+              .send('cookie sent');
           })
           .catch((err) => console.log(err));
       })
