@@ -20,6 +20,7 @@ class App extends Component {
     }
   }
 
+  // add selected product category to the state
   changeProductCategory(event) {
     const category = event.target.name;
     this.setState({
@@ -27,6 +28,7 @@ class App extends Component {
     });
   }
 
+  // get logged user's name from the cookies and add it to the state
   addLoggedUsernameToState() {
     this.setState({
       loggedUsername: Cookies.get('username'),
@@ -35,6 +37,7 @@ class App extends Component {
 
   render() {
 
+    // some testing....
     let greeting = '';
     if (this.state.loggedUsername) greeting = <div>Welcome {this.state.loggedUsername}</div>;
 

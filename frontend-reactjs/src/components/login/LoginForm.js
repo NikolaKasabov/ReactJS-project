@@ -27,8 +27,8 @@ class LoginForm extends Component {
     fetch('http://localhost:5000/login', {
       method: 'POST',
 
-      withCredentials: true,   // for cookies to save to the browser
-      credentials: 'include',  // for cookies to save to the browser
+      withCredentials: true,   // to save the cookie to the browser
+      credentials: 'include',  // to save the cookie to the browser
 
       headers: {
         'Accept': 'application/json',
@@ -42,7 +42,7 @@ class LoginForm extends Component {
     })
       .then((result) => {
         if (result.status === 200) {
-          // add logged user name to the App component's state
+          // add logged user's name to the App component's state
           this.props.addUsernameToApp();
         }
       })
