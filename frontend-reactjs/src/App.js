@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
-import ProductsList from './components/product-list/ProductsList';
+import ProductsList from './components/products-list/ProductsList';
 
 class App extends Component {
   constructor(props) {

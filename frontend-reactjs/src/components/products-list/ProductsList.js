@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Product from '../product/Product';
+import ProductCard from '../product/ProductCard';
 
 class ProductsList extends Component {
   constructor(props) {
@@ -35,9 +35,9 @@ class ProductsList extends Component {
 
   render() {
     return (
-      <div className="products-container">
+      <div className="products-list">
         {this.state.products.map((product) => {
-          return (<Product
+          return (<ProductCard
             key={product._id}
             imageUrl={product.imageUrl}
             description={product.description}

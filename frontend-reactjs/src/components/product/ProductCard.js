@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Product(props) {
+function ProductCard(props) {
   const { imageUrl, description, price } = props;
 
   return (
@@ -12,4 +12,4 @@ function Product(props) {
   )
 }
 
-export default Product;
+export default ProductCard;
