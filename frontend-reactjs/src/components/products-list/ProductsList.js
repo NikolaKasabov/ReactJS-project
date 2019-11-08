@@ -10,6 +10,22 @@ class ProductsList extends Component {
     }
   }
 
+  componentDidMount() {
+    const { category } = this.props.match.params;
+    this.fetchProductsAndAddToState(category);
+  }
+
+  // update state on prop changes
+  componentDidUpdate(prevProps) {
+    const { category } = this.props.match.params;
+    const prevCategory = prevProps.match.params.category;
+
+    if (category !== prevCategory) {
+      this.fetchProductsAndAddToState(category);
+    }
+  }
+
+  // get selected category products from the express server and add them to the state
   fetchProductsAndAddToState(category) {
     fetch(`http://localhost:5000/products/${category}`, {
       // method: "GET",
@@ -24,14 +40,7 @@ class ProductsList extends Component {
       .then((dataAsJson) => this.setState({ products: dataAsJson }))
       .catch((err) => console.log(err));
   }
-
-  // update state on prop changes
-  componentDidUpdate(prevProps) {
-    const { category } = this.props;
-    if (category !== prevProps.category) {
-      this.fetchProductsAndAddToState(category);
-    }
-  }
+  
 
   render() {
     return (

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
 
-// import { withCookies } from 'react-cookie';
 import Cookies from 'js-cookie';
 
+import Navigation from './components/navigation/Navigation';
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
 import ProductsList from './components/products-list/ProductsList';
@@ -11,25 +12,14 @@ import ProductsList from './components/products-list/ProductsList';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.changeProductCategory = this.changeProductCategory.bind(this);
-    this.addLoggedUsernameToState = this.addLoggedUsernameToState.bind(this);
 
     this.state = {
-      chosenProductsCategory: '',
       loggedUsername: Cookies.get('username'),
     }
   }
 
-  // add selected product category to the state
-  changeProductCategory(event) {
-    const category = event.target.name;
-    this.setState({
-      chosenProductsCategory: category,
-    });
-  }
-
   // get logged user's name from the cookies and add it to the state
-  addLoggedUsernameToState() {
+  addLoggedUsernameToState = () => {
     this.setState({
       loggedUsername: Cookies.get('username'),
     });
@@ -44,18 +34,17 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <RegisterForm />
-          <LoginForm addUsernameToApp={this.addLoggedUsernameToState}/>
-
-          <button onClick={this.changeProductCategory} name="tv">Телевизори</button>
-          <button onClick={this.changeProductCategory} name="laptop">Лаптопи</button>
-          <button onClick={this.changeProductCategory} name="phone">Телефони</button>
+          <Navigation />
 
           {greeting}
         </header>
 
         <main>
-          <ProductsList category={this.state.chosenProductsCategory} />
+          {/* using 'render' if must pass props to the component */}
+          <Route path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} />
+
+          <Route path='/register' component={RegisterForm} />
+          <Route path='/products/:category' component={ProductsList} />
         </main>
 
       </div>
@@ -64,4 +53,3 @@ class App extends Component {
 }
 
 export default App;
-// export default withCookies(App);
