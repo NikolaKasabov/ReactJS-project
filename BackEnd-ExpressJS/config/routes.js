@@ -1,5 +1,3 @@
-// const cors = require('cors');
-
 const guestController = require('../controllers/guestController');
 const userController = require('../controllers/userController');
 
@@ -12,6 +10,8 @@ module.exports = (app) => {
   app.post('/register', guestController.registerPost);
 
   app.post('/login', guestController.loginPost);
+
+  app.post('/addProductToCart/:productId', userController.addProductToCartPost);
 
   // app.get('/logout', redirectIfNotLogged, userController.logoutGet);
 

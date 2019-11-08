@@ -12,8 +12,6 @@ class Navigation extends Component {
   }
 
   render() {
-    let links;
-
     return (
       <div className='navigation-container'>
         <Link to='/products/tv'>Телевизори</Link>

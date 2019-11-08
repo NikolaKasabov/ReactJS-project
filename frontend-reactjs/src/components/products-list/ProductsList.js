@@ -6,7 +6,7 @@ class ProductsList extends Component {
     super(props);
 
     this.state = {
-      products: []
+      products: [],
     }
   }
 
@@ -26,7 +26,7 @@ class ProductsList extends Component {
   }
 
   // get selected category products from the express server and add them to the state
-  fetchProductsAndAddToState(category) {
+  fetchProductsAndAddToState = (category) => {
     fetch(`http://localhost:5000/products/${category}`, {
       // method: "GET",
       // headers: {
@@ -40,7 +40,13 @@ class ProductsList extends Component {
       .then((dataAsJson) => this.setState({ products: dataAsJson }))
       .catch((err) => console.log(err));
   }
-  
+
+  addProductToCart = (productId) => {
+    fetch(`http://localhost:5000/addProductToCart/${productId}`, {
+      method: 'POST',
+      credentials: 'include',
+    })
+  }
 
   render() {
     return (
@@ -48,9 +54,11 @@ class ProductsList extends Component {
         {this.state.products.map((product) => {
           return (<ProductCard
             key={product._id}
+            id={product._id}
             imageUrl={product.imageUrl}
             description={product.description}
             price={product.price}
+            addProductToCart={this.addProductToCart}
           />)
         })}
       </div>
