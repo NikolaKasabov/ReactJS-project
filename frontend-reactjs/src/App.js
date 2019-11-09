@@ -41,10 +41,10 @@ class App extends Component {
 
         <main>
           {/* using 'render' if must pass props to the component */}
-          <Route path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} />
+          <Route exact path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} />
 
-          <Route path='/register' component={RegisterForm} />
-          <Route path='/products/:category' component={ProductsList} />
+          <Route exact path='/register' component={RegisterForm} />
+          <Route exact path='/products/:category' component={ProductsList} />
         </main>
 
       </div>

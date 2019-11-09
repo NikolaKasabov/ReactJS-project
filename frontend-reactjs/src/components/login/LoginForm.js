@@ -34,14 +34,14 @@ class LoginForm extends Component {
         username: this.state.username,
         password: this.state.password,
       }),
-    })
-      .then((result) => {
-        if (result.status === 200) {
-          // add logged user's name to the App component's state
-          this.props.addUsernameToAppState();
-        }
-      })
-      .catch((err) => console.log(err));
+    }).then((result) => {
+      if (result.status === 200) {
+        // add logged user's name to the App component's state
+        this.props.addUsernameToAppState();
+      } else {
+        result.json().then((json) => alert(json.error));
+      }
+    }).catch((err) => console.log(err));
   }
 
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductCard from '../product/ProductCard';
+import ProductCard from '../productCard/ProductCard';
 
 class ProductsList extends Component {
   constructor(props) {
@@ -35,17 +35,18 @@ class ProductsList extends Component {
       //   'Cache': 'no-cache'
       // },
       credentials: 'include', // without this react will NOT send the cookie with the request to the server
-    })
-      .then((dataAsReadableStream) => dataAsReadableStream.json())
+    }).then((dataAsReadableStream) => dataAsReadableStream.json())
       .then((dataAsJson) => this.setState({ products: dataAsJson }))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('in catch: ', err));
   }
 
   addProductToCart = (productId) => {
     fetch(`http://localhost:5000/addProductToCart/${productId}`, {
       method: 'POST',
       credentials: 'include',
-    })
+    }).then((result) => result.json())
+      .then((json) => alert(json.error))
+      .catch((err) => console.log('in catch: ', err));
   }
 
   render() {

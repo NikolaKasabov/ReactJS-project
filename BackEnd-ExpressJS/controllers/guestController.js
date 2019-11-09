@@ -42,8 +42,7 @@ module.exports = {
       .then((userData) => {
         // if username is invalid
         if (!userData) {
-          res.status('401')
-            .send('Invalid data.');
+          res.status('401').send({ 'error': 'Invalid username and/or password.' });
         }
 
         // check if password is valid
@@ -51,8 +50,7 @@ module.exports = {
           .then((isPassValid) => {
             // if password is invalid
             if (!isPassValid) {
-              res.status('401')
-                .send('Invalid data.');
+              res.status('401').send({ 'error': 'Invalid username and/or password.' });
             }
 
             // create jwt and save it in a cookie
@@ -62,10 +60,8 @@ module.exports = {
             }, jwtSecret);
             res.cookie('jwt', token)
               .cookie('username', userData.username)
-              .send('cookie sent');
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
+              .send({ 'message': 'cookie sent' });
+          }).catch((err) => console.log(err));
+      }).catch((err) => console.log(err));
   },
 };

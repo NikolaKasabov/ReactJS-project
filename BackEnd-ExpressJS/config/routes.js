@@ -1,7 +1,7 @@
 const guestController = require('../controllers/guestController');
 const userController = require('../controllers/userController');
 
-const redirectIfNotLogged = require('../middlewares/redirectIfNotLogged');
+const sendErrorIfNotLogged = require('../middlewares/sendErrorIfNotLogged');
 
 module.exports = (app) => {
   
@@ -11,9 +11,9 @@ module.exports = (app) => {
 
   app.post('/login', guestController.loginPost);
 
-  app.post('/addProductToCart/:productId', userController.addProductToCartPost);
+  app.post('/addProductToCart/:productId', sendErrorIfNotLogged, userController.addProductToCartPost);
 
   // app.get('/logout', redirectIfNotLogged, userController.logoutGet);
 
-  app.all('*', (req, res) => res.json({ error: '404' }));
+  app.all('*', (req, res) => res.json({ error: '404. Not found.' }));
 };

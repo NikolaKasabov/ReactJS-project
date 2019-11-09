@@ -1,8 +1,5 @@
 const jwt = require('jsonwebtoken');
-const CourseModel = require('../models/Product');
 const UserModel = require('../models/User');
-const showNotification = require('../utils/showNotification');
-const redirectIfNotLogged = require('../middlewares/redirectIfNotLogged');
 
 const { jwtSecret } = require('../config/config');
 
