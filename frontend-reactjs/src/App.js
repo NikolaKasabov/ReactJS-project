@@ -5,6 +5,7 @@ import './App.css';
 import Cookies from 'js-cookie';
 
 import Navigation from './components/navigation/Navigation';
+import Home from './components/home/Home';
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm';
 import ProductsList from './components/products-list/ProductsList';
@@ -40,6 +41,8 @@ class App extends Component {
         </header>
 
         <main>
+          <Route exact path='/' component={Home} />
+
           {/* using 'render' if must pass props to the component */}
           <Route exact path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} />
 

@@ -30,7 +30,7 @@ module.exports = {
         // add the new user to mongodb collection 'Users'
         return UserModel.create({ username, password: hashedPass, salt });
       })
-      .then(() => res.redirect('/'))
+      .then((result) => res.send(result))  // some proper message should be sent.............................
       .catch((err) => console.log(err));
   },
 
