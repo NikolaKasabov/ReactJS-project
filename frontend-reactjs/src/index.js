@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
+// import App from './App-functional';
 import * as serviceWorker from './serviceWorker';
+
+import UsernameContextProvider from './contexts/UsernameContext';
 
 ReactDOM.render((
   <BrowserRouter>
-    <App />
+    <UsernameContextProvider>
+      <App />
+    </UsernameContextProvider>
   </BrowserRouter>
 ), document.getElementById('root'));
 
