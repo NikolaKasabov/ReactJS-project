@@ -6,13 +6,13 @@ import App from './App';
 // import App from './App-functional';
 import * as serviceWorker from './serviceWorker';
 
-import UsernameContextProvider from './contexts/UsernameContext';
+import MessagesContextProvider from './contexts/MessagesContext';
 
 ReactDOM.render((
   <BrowserRouter>
-    <UsernameContextProvider>
+    <MessagesContextProvider>
       <App />
-    </UsernameContextProvider>
+    </MessagesContextProvider>
   </BrowserRouter>
 ), document.getElementById('root'));
 

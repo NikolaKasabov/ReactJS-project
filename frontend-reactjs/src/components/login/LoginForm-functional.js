@@ -1,12 +1,12 @@
 import React, {useContext, useState } from 'react';
-import { UsernameContext } from '../../contexts/UsernameContext';
+import { MessagesContext } from '../../contexts/MessagesContext';
 
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  console.log(useContext(UsernameContext));
+  const { changeMessage } = useContext(MessagesContext);
 
   const onInputChange = (ev) => {
     const inputName = ev.target.name;
@@ -40,10 +40,16 @@ const LoginForm = (props) => {
       if (result.status === 200) {
         // add logged user's name to the App component's state
         props.addUsernameToAppState(username);
+        changeMessage('Login successful');
+
+        // redirect to home page
+        props.history.push('/');
       } else {
-        result.json().then((json) => alert(json.error));
+        result.json()
+          // .then((json) => alert(json.error));
+          .then((json) => changeMessage(json.error));
       }
-    }).catch((err) => alert(err));
+    }).catch((err) => changeMessage(err));
   }
 
 

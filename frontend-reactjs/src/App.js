@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import RegisterForm from './components/register/RegisterForm';
 import LoginForm from './components/login/LoginForm-functional';
 import ProductsList from './components/products-list/ProductsList';
+import Message from './components/message/Message';
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
         </header>
 
         <main>
+          <Message />
           <Route exact path='/' component={Home} />
 
           {/* using 'render' if must pass props to the component */}
