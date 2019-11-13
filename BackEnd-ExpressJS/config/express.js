@@ -1,4 +1,4 @@
-const express = require('express');
+// const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -10,9 +10,6 @@ module.exports = (app) => {
   // Setup the body parser
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-
-  // Setup the static files
-  app.use(express.static('static'));
 
   // Register 'cookie-parser' middleware
   app.use(cookieParser());

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -20,18 +20,31 @@ module.exports = {
   registerPost: (req, res) => {
     const { username, password, repeatPassword } = req.body;
 
-    // hash the password
-    bcrypt.genSalt(saltRounds)
-      .then((salt) => {
-        // pass the 'salt' and the 'hashed password' to the next .then() with Promise.all()
-        return Promise.all([salt, bcrypt.hash(password, salt)]);
+    // some checks
+    // check if username is already taken
+    UserModel.findOne({ 'username': username })
+      .then((user) => {
+        if (user) {
+          res.status(400).send({ 'error': 'This username is already taken. Choose another.' });
+        } else if (username.length < 5 || password.length < 5) {
+          res.status(400).send({ 'error': 'The username and the password must be at least 5 characters long.' });
+        } else if (password !== repeatPassword) {
+          res.status(400).send({ 'error': 'Password and repeat password must match.' });
+        } else {
+          // hash the password
+          bcrypt.genSalt(saltRounds)
+            .then((salt) => {
+              // pass the 'salt' and the 'hashed password' to the next .then() with Promise.all()
+              return Promise.all([salt, bcrypt.hash(password, salt)]);
+            })
+            .then(([salt, hashedPass]) => {
+              // add the new user to mongodb collection 'Users'
+              return UserModel.create({ username, password: hashedPass, salt });
+            })
+            .then(() => res.send({ 'message': 'Registration successful.' }))
+            .catch((err) => res.status(400).send({ 'error': 'Registration not successful.' }));
+        }
       })
-      .then(([salt, hashedPass]) => {
-        // add the new user to mongodb collection 'Users'
-        return UserModel.create({ username, password: hashedPass, salt });
-      })
-      .then((result) => res.send(result))  // some proper message should be sent.............................
-      .catch((err) => console.log(err));
   },
 
   loginPost: (req, res) => {
@@ -42,7 +55,7 @@ module.exports = {
       .then((userData) => {
         // if username is invalid
         if (!userData) {
-          res.status('401').send({ 'error': 'Invalid username and/or password.' });
+          res.status(401).send({ 'error': 'Invalid username and/or password.' });
         }
 
         // check if password is valid
@@ -50,7 +63,7 @@ module.exports = {
           .then((isPassValid) => {
             // if password is invalid
             if (!isPassValid) {
-              res.status('401').send({ 'error': 'Invalid username and/or password.' });
+              res.status(401).send({ 'error': 'Invalid username and/or password.' });
             }
 
             // create jwt and save it in a cookie

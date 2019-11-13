@@ -11,7 +11,7 @@ module.exports = {
     UserModel.findByIdAndUpdate(userId,
       { $push: { 'shoppingCart': productId } }
     )
-      .then((result) => console.log(result))
+      .then(() => res.send({'message': 'Product successfully added to the shopping cart.'}))
       .catch((err) => console.log(err));    
   },
 

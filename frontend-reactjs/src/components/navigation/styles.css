@@ -1,3 +1,18 @@
-.navigation-container a {
+.navigation-container a,
+.navigation-container button {
   margin: 0.5rem;
+  text-decoration: none;
+  color: coral;
+}
+
+.navigation-container button {
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.navigation-container .activeNav {
+  color: rgb(0, 38, 255);
 }

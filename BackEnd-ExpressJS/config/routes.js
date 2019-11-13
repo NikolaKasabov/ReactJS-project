@@ -15,5 +15,5 @@ module.exports = (app) => {
 
   // app.get('/logout', redirectIfNotLogged, userController.logoutGet);
 
-  app.all('*', (req, res) => res.json({ error: '404. Not found.' }));
+  app.all('*', (req, res) => res.status('404').send({ 'error': '404. Not found.' }));
 };

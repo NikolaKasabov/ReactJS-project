@@ -45,8 +45,14 @@ class ProductsList extends Component {
       method: 'POST',
       credentials: 'include',
     }).then((result) => result.json())
-      .then((json) => alert(json.error))
-      .catch((err) => console.log('in catch: ', err));
+      .then((json) => {
+        if (json.error) {
+          alert(json.error);
+        } else if (json.message) {
+          alert(json.message);
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {

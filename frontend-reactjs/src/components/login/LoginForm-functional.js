@@ -1,25 +1,42 @@
-import React, {useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
 
-
 const LoginForm = (props) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+
+  // const { changeMessage } = useContext(MessagesContext);
+
+  // const onInputChange = (ev) => {
+  //   const inputName = ev.target.name;
+  //   const inputValue = ev.target.value;
+
+  //   if (inputName === 'username') {
+  //     setUsername(inputValue);
+  //   } else {
+  //     setPassword(inputValue);
+  //   }
+  // }
 
   const { changeMessage } = useContext(MessagesContext);
+  const [userData, setUserData] = useState({
+    username: '',
+    password: '',
+  });
 
+
+  // when user is typing
   const onInputChange = (ev) => {
     const inputName = ev.target.name;
     const inputValue = ev.target.value;
 
-    if (inputName === 'username') {
-      setUsername(inputValue);
-    } else {
-      setPassword(inputValue);
-    }
+    setUserData({
+      ...userData,
+      [inputName]: inputValue,
+    });
   }
 
-  // login user
+  // login form submit
   const onFormSubmit = (ev) => {
     ev.preventDefault();
 
@@ -33,21 +50,20 @@ const LoginForm = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: username,
-        password: password,
+        username: userData.username,
+        password: userData.password,
       }),
     }).then((result) => {
       if (result.status === 200) {
         // add logged user's name to the App component's state
-        props.addUsernameToAppState(username);
+        props.addUsernameToAppState(userData.username);
         changeMessage('Login successful');
 
         // redirect to home page
         props.history.push('/');
       } else {
-        result.json()
-          // .then((json) => alert(json.error));
-          .then((json) => changeMessage(json.error));
+        // if there is an error, show the message
+        result.json().then((json) => changeMessage(json.error));
       }
     }).catch((err) => changeMessage(err));
   }
@@ -56,10 +72,10 @@ const LoginForm = (props) => {
   return (
     <form onSubmit={onFormSubmit}>
       <label htmlFor="login-username">Username: </label>
-      <input type="text" id="login-username" name="username" onChange={onInputChange} value={username} />
+      <input type="text" id="login-username" name="username" onChange={onInputChange} value={userData.username} />
       <br />
       <label htmlFor="login-password">Password: </label>
-      <input type="password" id="login-password" name="password" onChange={onInputChange} value={password} />
+      <input type="password" id="login-password" name="password" onChange={onInputChange} value={userData.password} />
       <br />
       <input type="submit" value="Login" />
     </form>

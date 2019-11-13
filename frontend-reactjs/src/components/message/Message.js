@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
 
 const Message = (props) => {
-  const { message, changeMessage } = useContext(MessagesContext);
+  const { message } = useContext(MessagesContext);
 
   return (
     <div className="message" >

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './styles.css';
 
 class Navigation extends Component {
@@ -14,12 +14,13 @@ class Navigation extends Component {
   render() {
     return (
       <div className='navigation-container'>
-        <Link to='/'>Home</Link>
-        <Link to='/products/tv'>TV</Link>
-        <Link to='/products/laptop'>Laptops</Link>
-        <Link to='/products/phone'>Phones</Link>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Register</Link>
+        <NavLink exact to='/' activeClassName="activeNav">Home</NavLink>
+        <NavLink to='/products/tv' activeClassName="activeNav">TV</NavLink>
+        <NavLink to='/products/laptop' activeClassName="activeNav">Laptops</NavLink>
+        <NavLink to='/products/phone' activeClassName="activeNav">Phones</NavLink>
+        <NavLink to='/login' activeClassName="activeNav">Login</NavLink>
+        <NavLink to='/register' activeClassName="activeNav">Register</NavLink>
+        <button onClick={() => alert('logout')}>Logout</button>
       </div>
     )
   }
