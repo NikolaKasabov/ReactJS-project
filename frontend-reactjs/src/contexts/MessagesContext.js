@@ -10,7 +10,7 @@ const MessagesContextProvider = (props) => {
 
     setTimeout(() => {
       setMessage('');
-    }, 3000);
+    }, 2000);
   }
 
   return (

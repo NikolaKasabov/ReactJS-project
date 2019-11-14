@@ -2,22 +2,6 @@ import React, { useContext, useState } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
 
 const LoginForm = (props) => {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const { changeMessage } = useContext(MessagesContext);
-
-  // const onInputChange = (ev) => {
-  //   const inputName = ev.target.name;
-  //   const inputValue = ev.target.value;
-
-  //   if (inputName === 'username') {
-  //     setUsername(inputValue);
-  //   } else {
-  //     setPassword(inputValue);
-  //   }
-  // }
-
   const { changeMessage } = useContext(MessagesContext);
   const [userData, setUserData] = useState({
     username: '',
@@ -55,8 +39,8 @@ const LoginForm = (props) => {
       }),
     }).then((result) => {
       if (result.status === 200) {
-        // add logged user's name to the App component's state
-        props.addUsernameToAppState(userData.username);
+        // // add logged user's name to the App component's state
+        // props.addUsernameToAppState(userData.username);
         changeMessage('Login successful');
 
         // redirect to home page

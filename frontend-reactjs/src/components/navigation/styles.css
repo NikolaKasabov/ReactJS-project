@@ -1,12 +1,14 @@
 .navigation-container a,
-.navigation-container button {
+.navigation-container button,
+.greeting-message {
   margin: 0.5rem;
   text-decoration: none;
   color: coral;
+  font-size: 1.6rem;
 }
 
 .navigation-container button {
-  font-size: 1.6rem;
+  padding: 0;
   border: none;
   outline: none;
   background: transparent;

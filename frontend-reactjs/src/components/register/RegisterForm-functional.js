@@ -17,7 +17,7 @@ const RegisterForm = (props) => {
     setUserData({
       ...userData,
       [inputName]: inputValue,
-    })
+    });
   }
 
   const onFormSubmit = (ev) => {

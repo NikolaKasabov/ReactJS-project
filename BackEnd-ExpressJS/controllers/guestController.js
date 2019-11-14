@@ -56,6 +56,7 @@ module.exports = {
         // if username is invalid
         if (!userData) {
           res.status(401).send({ 'error': 'Invalid username and/or password.' });
+          return;
         }
 
         // check if password is valid
@@ -64,6 +65,7 @@ module.exports = {
             // if password is invalid
             if (!isPassValid) {
               res.status(401).send({ 'error': 'Invalid username and/or password.' });
+              return;
             }
 
             // create jwt and save it in a cookie

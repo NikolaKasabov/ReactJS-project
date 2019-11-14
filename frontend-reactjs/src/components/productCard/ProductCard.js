@@ -6,7 +6,7 @@ function ProductCard(props) {
   const { id, imageUrl, description, price } = props;
   const isLogged = Cookies.get('jwt') ? true : false;
   let addToCartButton = '';
-  if (isLogged) addToCartButton = <button onClick={() => props.addProductToCart(id)}>Add to Cart {id}</button>;
+  if (isLogged) addToCartButton = <button onClick={() => props.addProductToCart(id)}>Add to Cart</button>;
 
   return (
 
