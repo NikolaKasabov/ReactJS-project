@@ -34,7 +34,7 @@ class ProductsList extends Component {
       //   'Content-Type': 'application/json',
       //   'Cache': 'no-cache'
       // },
-      credentials: 'include', // without this react will NOT send the cookie with the request to the server
+      credentials: 'include', // without this react will NOT send the cookies with the request to the server
     }).then((dataAsReadableStream) => dataAsReadableStream.json())
       .then((dataAsJson) => this.setState({ products: dataAsJson }))
       .catch((err) => console.log('in catch: ', err));

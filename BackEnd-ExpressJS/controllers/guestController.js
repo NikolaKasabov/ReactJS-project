@@ -11,9 +11,7 @@ module.exports = {
     const { category } = req.params;
 
     ProductModel.find({ category })
-      .then((products) => {
-        res.json(products);
-      })
+      .then((products) => res.json(products))
       .catch((err) => console.log(err));
   },
 

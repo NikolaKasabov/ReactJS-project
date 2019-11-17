@@ -4,8 +4,11 @@ import Cookies from 'js-cookie';
 import './styles.css';
 import { MessagesContext } from '../../contexts/MessagesContext';
 
-const Navigation = (props) => {
+function Navigation(props) {
   const { changeMessage } = useContext(MessagesContext);
+  const username = Cookies.get('username');
+  // check if user is logged in, i.e. there is 'jwt' cookie
+  const isLoggedIn = Cookies.get('jwt');
 
   const onLogoutClick = () => {
     // delete cookies
@@ -18,14 +21,6 @@ const Navigation = (props) => {
     // show message
     changeMessage('Logout successful.');
   };
-
-  // some testing....
-  let greeting = '';
-  const username = Cookies.get('username');
-  if (username) greeting = <span className="greeting-message">Welcome, {username}.</span>;
-
-  // check if user is logged in, i.e. there is 'jwt' cookie
-  const isLoggedIn = Cookies.get('jwt');
 
   return (
     <div className='navigation-container'>
@@ -41,7 +36,7 @@ const Navigation = (props) => {
         </>
       ) : (
           <>
-            {greeting}
+            <NavLink to='/shoppingCart' activeClassName="activeNav">{username}'s cart.</NavLink>
             <button onClick={onLogoutClick}>Logout</button>
           </>
         )}

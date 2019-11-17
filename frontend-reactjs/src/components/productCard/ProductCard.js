@@ -9,7 +9,6 @@ function ProductCard(props) {
   if (isLogged) addToCartButton = <button onClick={() => props.addProductToCart(id)}>Add to Cart</button>;
 
   return (
-
     <div className="product-card">
       <img src={imageUrl} alt="" height="200" />
       <p>Description: {description}</p>

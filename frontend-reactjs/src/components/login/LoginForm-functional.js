@@ -49,7 +49,9 @@ const LoginForm = (props) => {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
       }
-    }).catch((err) => changeMessage(err));
+    }).catch((err) => {
+      changeMessage('Sorry. Something went wrong.');
+    });
   }
 
 

@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema({
     },
   },
 
-  shoppingCart: [{ type: mongoose.Types.ObjectId, ref: 'Products' }],
+  // shoppingCart: [{ type: mongoose.Types.ObjectId, ref: 'Products' }],
+  shoppingCart: [{ type: Object }],
 });
 
 module.exports = mongoose.model('Users', userSchema);
