@@ -10,7 +10,6 @@ function ShoppingCart() {
   },[]);
 
   function removeProductFromCart(productId) {
-    console.log(productId);
     fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
       method: 'POST',
       credentials: 'include'
