@@ -39,19 +39,14 @@ const LoginForm = (props) => {
       }),
     }).then((result) => {
       if (result.status === 200) {
-        // // add logged user's name to the App component's state
-        // props.addUsernameToAppState(userData.username);
         changeMessage('Login successful');
-
         // redirect to home page
         props.history.push('/');
       } else {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
       }
-    }).catch((err) => {
-      changeMessage('Sorry. Something went wrong.');
-    });
+    }).catch(() => changeMessage('Sorry. Something went wrong.'));
   }
 
 

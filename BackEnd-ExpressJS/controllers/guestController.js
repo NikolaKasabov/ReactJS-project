@@ -15,6 +15,15 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
+  searchPost: (req, res) => {
+    const { searchString } = req.body;
+    console.log(searchString);
+
+    ProductModel.find({ 'description': { $regex: new RegExp(searchString, 'i') } })
+      .then((products) => res.json(products))
+      .catch((err) => console.log(err));
+  },
+
   registerPost: (req, res) => {
     const { username, password, repeatPassword } = req.body;
 

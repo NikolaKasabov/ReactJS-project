@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './styles.css';
 import { MessagesContext } from '../../contexts/MessagesContext';
+
+import Search from '../search/SearchForm';
 
 function Navigation(props) {
   const { changeMessage } = useContext(MessagesContext);
@@ -40,6 +42,8 @@ function Navigation(props) {
             <button onClick={onLogoutClick}>Logout</button>
           </>
         )}
+
+      <Route component={Search} />
     </div>
   )
 }

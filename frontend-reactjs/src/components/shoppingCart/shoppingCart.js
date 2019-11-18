@@ -3,23 +3,24 @@ import './styles.css';
 
 function ShoppingCart() {
   const [products, setProducts] = useState([]);
-  let totalSum = products.reduce((acc, cur) => acc + +cur.price, 0);
+  const totalSum = products.reduce((acc, cur) => acc + +cur.price, 0);
 
+  // initial products fetch, similar to componentDidMount()
   useEffect(() => {
     fetchProducts();
-  },[]);
+  }, []);
 
   function removeProductFromCart(productId) {
     fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
       method: 'POST',
-      credentials: 'include'
-    }).then((result) => fetchProducts())
+      credentials: 'include',
+    }).then(() => fetchProducts())
       .catch((err) => console.log(err));
   }
 
   function fetchProducts() {
     fetch('http://localhost:5000/seeShoppingCart', {
-      credentials: 'include'
+      credentials: 'include',
     }).then((result) => result.json())
       .then((productsArr) => setProducts(productsArr))
       .catch((err) => console.log(err));

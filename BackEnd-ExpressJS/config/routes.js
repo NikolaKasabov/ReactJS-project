@@ -7,6 +7,8 @@ module.exports = (app) => {
   
   app.get('/products/:category', guestController.productsGet);
 
+  app.post('/search', guestController.searchPost);
+
   app.post('/register', guestController.registerPost);
 
   app.post('/login', guestController.loginPost);
