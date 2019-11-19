@@ -4,7 +4,6 @@ import './styles.css';
 
 import addProductToCart from '../../utils/addProductToCart';
 
-
 function ProductCard(props) {
   const { id, imageUrl, description, price } = props;
   const isLogged = Cookies.get('jwt') ? true : false;
@@ -14,8 +13,8 @@ function ProductCard(props) {
   return (
     <div className="product-card">
       <img src={imageUrl} alt="" height="200" />
-      <p>Description: {description}</p>
-      <p>Price: {price} lv.</p>
+      <p>{description}.</p>
+      <p>{price} lv.</p>
       {addToCartButton}
     </div>
   )

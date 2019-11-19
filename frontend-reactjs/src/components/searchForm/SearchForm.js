@@ -59,7 +59,12 @@ function SearchForm(props) {
   return (
     // <form onSubmit={onSubmit}>
     <form>
-      <input type='text' placeholder='Search...' onChange={onInputChange} />
+      <input
+        type='text'
+        placeholder='Search...'
+        onChange={onInputChange}
+        onBlur={(ev) => ev.target.value = ''}
+      />
       {/* <button type='submit'>Search</button> */}
     </ form>
   )
