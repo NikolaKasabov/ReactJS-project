@@ -32,11 +32,11 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             {/* using 'render' if must pass props to the component */}
             {/* <Route exact path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} /> */}
-            <Route exact path='/login' component={LoginForm} />
-            <Route exact path='/register' component={RegisterForm} />
-            <Route exact path='/products/:category' component={ProductsList} />
-            <Route exact path='/shoppingCart' component={ShoppingCart} />
-            <Route exact path='/search' component={SearchResultProductsList} />
+            <Route path='/login' component={LoginForm} />
+            <Route path='/register' component={RegisterForm} />
+            <Route path='/products/:category' component={ProductsList} />
+            <Route path='/shoppingCart' component={ShoppingCart} />
+            <Route path='/search' component={SearchResultProductsList} />
             <Route component={NotFound} />
           </Switch>
         </main>

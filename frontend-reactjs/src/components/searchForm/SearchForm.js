@@ -10,6 +10,12 @@ function SearchForm(props) {
   function onInputChange(ev) {
     // setSearchString(ev.target.value);  // It's asynchronous. Used when Submit button is present.
 
+    // if search field is empty return no products
+    if (ev.target.value === '') {
+      setSearchResult([]);
+      return;
+    };
+
     // fetch searched products and send them to SearchResultContext
     fetch('http://localhost:5000/search', {
       method: 'POST',
