@@ -2,11 +2,14 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import './styles.css';
 
+import addProductToCart from '../../utils/addProductToCart';
+
+
 function ProductCard(props) {
   const { id, imageUrl, description, price } = props;
   const isLogged = Cookies.get('jwt') ? true : false;
   let addToCartButton = '';
-  if (isLogged) addToCartButton = <button onClick={() => props.addProductToCart(id)}>Add to Cart</button>;
+  if (isLogged) addToCartButton = <button onClick={() => addProductToCart(id)}>Add to Cart</button>;
 
   return (
     <div className="product-card">

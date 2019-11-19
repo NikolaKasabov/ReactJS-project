@@ -13,7 +13,7 @@ import LoginForm from './components/login/LoginForm-functional';
 import ProductsList from './components/products-list/ProductsList';
 import Message from './components/message/Message';
 import ShoppingCart from './components/shoppingCart/shoppingCart';
-// import Search from './components/search/Search';
+import SearchResultProductsList from './components/searchResultProductsList/searchResultProductsList';
 import NotFound from './components/404/404';
 
 class App extends Component {
@@ -36,11 +36,10 @@ class App extends Component {
             <Route exact path='/register' component={RegisterForm} />
             <Route exact path='/products/:category' component={ProductsList} />
             <Route exact path='/shoppingCart' component={ShoppingCart} />
-            {/* <Route exact path='/search' component={Search} /> */}
+            <Route exact path='/search' component={SearchResultProductsList} />
             <Route component={NotFound} />
           </Switch>
         </main>
-
       </div>
     );
   }

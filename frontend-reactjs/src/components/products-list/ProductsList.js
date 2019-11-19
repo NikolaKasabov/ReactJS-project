@@ -40,33 +40,17 @@ class ProductsList extends Component {
       .catch((err) => console.log('in catch: ', err));
   }
 
-  addProductToCart = (productId) => {
-    fetch(`http://localhost:5000/addProductToCart/${productId}`, {
-      method: 'POST',
-      credentials: 'include',
-    }).then((result) => result.json())
-      .then((json) => {
-        if (json.error) {
-          alert(json.error);
-        } else if (json.message) {
-          alert(json.message);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-
   render() {
     return (
       <div className="products-list">
-        {this.state.products.map((product) => {
+        {this.state.products.map((product, index) => {
           return (<ProductCard
-            key={product._id}
+            key={index}
             id={product._id}
             imageUrl={product.imageUrl}
             description={product.description}
             price={product.price}
-            addProductToCart={this.addProductToCart}
-          />)
+          />);
         })}
       </div>
     )

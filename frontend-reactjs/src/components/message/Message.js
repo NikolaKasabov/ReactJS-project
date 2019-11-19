@@ -6,7 +6,7 @@ const Message = (props) => {
 
   return (
     <div className="message" >
-      <h2>{message}</h2>
+      {message ? <h3>{message}</h3> : ''}
     </div >
   )
 }

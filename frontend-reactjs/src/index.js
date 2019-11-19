@@ -7,11 +7,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import MessagesContextProvider from './contexts/MessagesContext';
+import SearchResultContextProvider from './contexts/SearchResultContext';
+
 
 ReactDOM.render((
   <BrowserRouter>
     <MessagesContextProvider>
-      <App />
+      <SearchResultContextProvider>
+        <App />
+      </SearchResultContextProvider>
     </MessagesContextProvider>
   </BrowserRouter>
 ), document.getElementById('root'));

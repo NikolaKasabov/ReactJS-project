@@ -9,7 +9,7 @@ const LoginForm = (props) => {
   });
 
 
-  // when user is typing
+  // on user typing
   const onInputChange = (ev) => {
     const inputName = ev.target.name;
     const inputValue = ev.target.value;

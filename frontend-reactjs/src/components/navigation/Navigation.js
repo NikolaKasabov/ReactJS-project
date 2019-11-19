@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Route, NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './styles.css';
-import { MessagesContext } from '../../contexts/MessagesContext';
 
-import Search from '../search/SearchForm';
+import { MessagesContext } from '../../contexts/MessagesContext';
+import SearchForm from '../searchForm/SearchForm';
 
 function Navigation(props) {
   const { changeMessage } = useContext(MessagesContext);
@@ -43,7 +43,8 @@ function Navigation(props) {
           </>
         )}
 
-      <Route component={Search} />
+      {/* SearchForm is in Route component so we can use redirect inside it (with props.history.push('/somePath')) */}
+      <Route component={SearchForm} />
     </div>
   )
 }

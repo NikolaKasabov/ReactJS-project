@@ -17,7 +17,7 @@ module.exports = {
 
   searchPost: (req, res) => {
     const { searchString } = req.body;
-    console.log(searchString);
+    console.log(req.body);
 
     ProductModel.find({ 'description': { $regex: new RegExp(searchString, 'i') } })
       .then((products) => res.json(products))

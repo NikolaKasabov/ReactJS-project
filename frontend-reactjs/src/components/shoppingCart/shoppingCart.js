@@ -54,7 +54,7 @@ function ShoppingCart() {
             </tr>
           </tfoot>
         </table>
-      ) : <h1>There are no products in the cart.</h1>}
+      ) : <h2>There are no products in the cart.</h2>}
     </>
   );
 }
