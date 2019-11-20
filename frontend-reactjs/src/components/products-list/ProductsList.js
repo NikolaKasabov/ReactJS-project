@@ -41,6 +41,8 @@ class ProductsList extends Component {
   }
 
   render() {
+    document.title = 'Products';
+
     return (
       <div className="products-list">
         {this.state.products.map((product, index) => {

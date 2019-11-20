@@ -1,0 +1,9 @@
+.regiter-username,
+.regiter-password,
+.regiter-repeat-password {
+  background-color: rgb(163, 255, 154);
+}
+
+.warning {
+  background-color: rgb(253, 193, 193);
+}

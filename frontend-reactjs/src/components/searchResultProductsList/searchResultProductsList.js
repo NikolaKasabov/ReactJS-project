@@ -6,6 +6,8 @@ import ProductCard from '../productCard/ProductCard';
 function SearchResultProductsList() {
   const { searchResult } = useContext(SearchResultContext);
 
+  document.title = 'Search results';
+
   return (
     <div>
       {searchResult.length > 0 ? (

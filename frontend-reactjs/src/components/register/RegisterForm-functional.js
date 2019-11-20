@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import './styles.css';
 
 const RegisterForm = (props) => {
   const { changeMessage } = useContext(MessagesContext);
@@ -9,6 +10,15 @@ const RegisterForm = (props) => {
     repeatPassword: '',
   });
 
+  document.title = 'Register';
+
+  // change input fields background color: red/green
+  let classNameUsername = 'regiter-username';
+  let classNamePassword = 'regiter-password';
+  let classNameRepeatPassword = 'regiter-repeat-password';
+  if (userData.username.length < 5) classNameUsername += ' warning';
+  if (userData.password.length < 5) classNamePassword += ' warning';
+  if (userData.repeatPassword !== userData.password || userData.repeatPassword.length < 5) classNameRepeatPassword += ' warning';
 
   const onInputChange = (ev) => {
     const inputName = ev.target.name;
@@ -36,7 +46,7 @@ const RegisterForm = (props) => {
         changeMessage('Registration successful.');
 
         // redirect to home page
-        props.history.push('/');
+        props.history.push('/login');
       } else {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
@@ -48,13 +58,13 @@ const RegisterForm = (props) => {
   return (
     <form onSubmit={onFormSubmit}>
       <label htmlFor="register-username">Username: </label>
-      <input type="text" id="register-username" name="username" onChange={onInputChange} />
+      <input type="text" id="register-username" name="username" className={classNameUsername} onChange={onInputChange} />
       <br />
       <label htmlFor="register-password">Password: </label>
-      <input type="password" id="register-password" name="password" onChange={onInputChange} />
+      <input type="password" id="register-password" name="password" className={classNamePassword} onChange={onInputChange} />
       <br />
       <label htmlFor="register-repeat-password">Repeat password: </label>
-      <input type="password" id="register-repeat-password" name="repeatPassword" onChange={onInputChange} />
+      <input type="password" id="register-repeat-password" name="repeatPassword" className={classNameRepeatPassword} onChange={onInputChange} />
       <br />
       <input type="submit" value="Register" />
     </form>

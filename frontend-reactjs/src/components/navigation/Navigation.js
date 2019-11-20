@@ -38,7 +38,7 @@ function Navigation(props) {
         </>
       ) : (
           <>
-            <NavLink to='/shoppingCart' activeClassName="activeNav">{username}'s cart.</NavLink>
+            <NavLink to='/shoppingCart' activeClassName="activeNav">{username}'s cart</NavLink>
             <button onClick={onLogoutClick}>Logout</button>
           </>
         )}

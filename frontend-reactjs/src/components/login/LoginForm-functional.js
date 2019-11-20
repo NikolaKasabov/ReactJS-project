@@ -8,6 +8,7 @@ const LoginForm = (props) => {
     password: '',
   });
 
+  document.title = 'Login';
 
   // on user typing
   const onInputChange = (ev) => {
