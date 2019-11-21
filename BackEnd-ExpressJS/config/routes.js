@@ -19,5 +19,7 @@ module.exports = (app) => {
 
   app.get('/seeShoppingCart', sendErrorIfNotLogged, userController.seeShoppingCartGet);
 
+  app.post('/addNewProduct', sendErrorIfNotLogged, userController.addNewProduct);
+
   app.all('*', (req, res) => res.status('404').send({ 'error': '404. Not found.' }));
 };

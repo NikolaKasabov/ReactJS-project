@@ -14,6 +14,7 @@ import ProductsList from './components/products-list/ProductsList';
 import Message from './components/message/Message';
 import ShoppingCart from './components/shoppingCart/shoppingCart';
 import SearchResultProductsList from './components/searchResultProductsList/searchResultProductsList';
+import AdminForm from './components/admin-form/AdminForm';
 import NotFound from './components/404/404';
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
             <Route path='/products/:category' component={ProductsList} />
             <Route path='/shoppingCart' component={ShoppingCart} />
             <Route path='/search' component={SearchResultProductsList} />
+            <Route path='/addNewProduct' component={AdminForm} />
             <Route component={NotFound} />
           </Switch>
         </main>

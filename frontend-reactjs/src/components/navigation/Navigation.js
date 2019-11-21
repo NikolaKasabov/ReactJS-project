@@ -11,6 +11,8 @@ function Navigation(props) {
   const username = Cookies.get('username');
   // check if user is logged in, i.e. there is 'jwt' cookie
   const isLoggedIn = Cookies.get('jwt');
+  // check if logged user is Admin
+  const isAdmin = Cookies.get('username') === 'Admin';
 
   const onLogoutClick = () => {
     // delete cookies
@@ -26,19 +28,20 @@ function Navigation(props) {
 
   return (
     <div className='navigation-container'>
-      <NavLink exact to='/' activeClassName="activeNav">Home</NavLink>
-      <NavLink to='/products/tv' activeClassName="activeNav">TV</NavLink>
-      <NavLink to='/products/laptop' activeClassName="activeNav">Laptops</NavLink>
-      <NavLink to='/products/phone' activeClassName="activeNav">Phones</NavLink>
+      <NavLink exact to='/' activeClassName='activeNav'>Home</NavLink>
+      <NavLink to='/products/tv' activeClassName='activeNav'>TV</NavLink>
+      <NavLink to='/products/laptop' activeClassName='activeNav'>Laptops</NavLink>
+      <NavLink to='/products/phone' activeClassName='activeNav'>Phones</NavLink>
 
       {!isLoggedIn ? (
         <>
-          <NavLink to='/login' activeClassName="activeNav">Login</NavLink>
-          <NavLink to='/register' activeClassName="activeNav">Register</NavLink>
+          <NavLink to='/login' activeClassName='activeNav'>Login</NavLink>
+          <NavLink to='/register' activeClassName='activeNav'>Register</NavLink>
         </>
       ) : (
           <>
-            <NavLink to='/shoppingCart' activeClassName="activeNav">{username}'s cart</NavLink>
+            <NavLink to='/shoppingCart' activeClassName='activeNav'>{username}'s cart</NavLink>
+            {isAdmin && <NavLink to='/addNewProduct' activeClassName='activeNav'>Add Product</NavLink>}
             <button onClick={onLogoutClick}>Logout</button>
           </>
         )}

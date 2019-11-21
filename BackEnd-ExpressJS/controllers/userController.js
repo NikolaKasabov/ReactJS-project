@@ -45,4 +45,8 @@ module.exports = {
       .then((user) => res.json(user.shoppingCart))
       .catch((err) => console.log(err));
   },
+
+  addNewProduct: (req, res) => {
+    console.log(req.body)
+  },
 }

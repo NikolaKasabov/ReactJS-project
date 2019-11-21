@@ -39,14 +39,16 @@ function ShoppingCart() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
-              <tr key={index}>
-                <td><img src={product.imageUrl} width="100px" alt={product.description} /></td>
+            {products.map((product, index) => {
+              const imageUrlSmall = product.imageUrl.replace('/upload/', '/upload/c_scale,w_100/');  // only when images are hosted in Cloudinary.com
+
+              return <tr key={index}>
+                <td><img src={imageUrlSmall} width="100px" alt={product.description} /></td>
                 <td>{product.description}</td>
                 <td>{product.price} lv.</td>
                 <td><button onClick={() => removeProductFromCart(product.id)}>Remove product</button></td>
               </tr>
-            ))}
+            })}
           </tbody>
           <tfoot>
             <tr>

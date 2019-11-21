@@ -29,10 +29,10 @@ const LoginForm = (props) => {
     // send POST request to the express server with the login data, and get a cookie with jwt
     fetch('http://localhost:5000/login', {
       method: 'POST',
-      withCredentials: true,   // to save the cookie to the browser
-      credentials: 'include',  // to save the cookie to the browser
+      // withCredentials: true,   // to save the cookies to the browser
+      credentials: 'include',  // to save the cookies to the browser
       headers: {
-        'Accept': 'application/json',
+        // 'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
