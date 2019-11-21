@@ -5,12 +5,12 @@ export const MessagesContext = createContext();
 const MessagesContextProvider = (props) => {
   const [message, setMessage] = useState('');
 
-  const changeMessage = (message) => {
+  const changeMessage = (message, delay = 2000) => {
     setMessage(message);
 
     setTimeout(() => {
       setMessage('');
-    }, 2000);
+    }, delay);
   }
 
   return (

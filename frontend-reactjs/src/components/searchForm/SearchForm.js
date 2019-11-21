@@ -67,7 +67,7 @@ function SearchForm(props) {
     <form>
       <input
         type='text'
-        placeholder='Search...'
+        placeholder='search products...'
         onChange={onInputChange}
         onBlur={(ev) => ev.target.value = ''}
       />

@@ -24,6 +24,7 @@ const LoginForm = (props) => {
   // login form submit
   const onFormSubmit = (ev) => {
     ev.preventDefault();
+    changeMessage('Loading...');
 
     // send POST request to the express server with the login data, and get a cookie with jwt
     fetch('http://localhost:5000/login', {
@@ -47,7 +48,7 @@ const LoginForm = (props) => {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
       }
-    }).catch(() => changeMessage('Sorry. Something went wrong.'));
+    }).catch(() => changeMessage('Sorry. Something went wrong :('));
   }
 
 

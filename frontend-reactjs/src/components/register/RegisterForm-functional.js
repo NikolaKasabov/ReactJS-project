@@ -34,6 +34,7 @@ const RegisterForm = (props) => {
   // on 'Register' button click
   const onFormSubmit = (ev) => {
     ev.preventDefault();
+    changeMessage('Loading...');
 
     fetch('http://localhost:5000/register', {
       method: 'POST',
@@ -47,23 +48,23 @@ const RegisterForm = (props) => {
       if (result.status === 200) {
         changeMessage('Registration successful.');
 
-        // redirect to home page
+        // redirect to login page
         props.history.push('/login');
       } else {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
       }
-    }).catch((err) => changeMessage('500. Something went wrong :('));
+    }).catch((err) => changeMessage('Sorry. Something went wrong :('));
   }
 
 
   return (
     <form onSubmit={onFormSubmit}>
       <label htmlFor="register-username">Username: </label>
-      <input type="text" id="register-username" name="username" className={classNameUsername} onChange={onInputChange} />
+      <input type="text" id="register-username" name="username" className={classNameUsername} minLength="5" onChange={onInputChange} />
       <br />
       <label htmlFor="register-password">Password: </label>
-      <input type="password" id="register-password" name="password" className={classNamePassword} onChange={onInputChange} />
+      <input type="password" id="register-password" name="password" className={classNamePassword} minLength="5" onChange={onInputChange} />
       <br />
       <label htmlFor="register-repeat-password">Repeat password: </label>
       <input type="password" id="register-repeat-password" name="repeatPassword" className={classNameRepeatPassword} onChange={onInputChange} />
