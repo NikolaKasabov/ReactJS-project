@@ -18,7 +18,7 @@ import AdminForm from './components/admin-form/AdminForm';
 import NotFound from './components/404/404';
 
 class App extends Component {
-  
+
   render() {
     return (
       <div className="App">
@@ -27,7 +27,7 @@ class App extends Component {
         </header>
 
         <main>
-          <Message />
+          <Route component={Message} />
 
           <Switch>
             <Route exact path='/' component={Home} />

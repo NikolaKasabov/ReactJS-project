@@ -45,7 +45,7 @@ module.exports = {
             })
             .then(([salt, hashedPass]) => {
               // add the new user to mongodb collection 'Users'
-              return UserModel.create({ username, password: hashedPass, salt });
+              return UserModel.create({ username, password: hashedPass });
             })
             .then(() => res.send({ 'message': 'Registration successful.' }))
             .catch((err) => res.status(400).send({ 'error': 'Registration not successful.' }));

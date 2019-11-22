@@ -4,13 +4,9 @@ function addProductToCart(productId) {
     credentials: 'include',
   }).then((result) => result.json())
     .then((json) => {
-      if (json.error) {
-        alert(json.error);
-      } else if (json.message) {
-        alert(json.message);
-      }
-    })
-    .catch((err) => console.log(err));
+      if (json.error) { alert(json.error); }
+      else if (json.message) { alert(json.message); }
+    }).catch((err) => console.log(err));
 }
 
 export default addProductToCart;

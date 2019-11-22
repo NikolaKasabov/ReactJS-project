@@ -12,7 +12,7 @@ function Navigation(props) {
   // check if user is logged in, i.e. there is 'jwt' cookie
   const isLoggedIn = Cookies.get('jwt');
   // check if logged user is Admin
-  const isAdmin = Cookies.get('username') === 'Admin';
+  const isAdmin = Cookies.get('username') === 'admin';
 
   const onLogoutClick = () => {
     // delete cookies

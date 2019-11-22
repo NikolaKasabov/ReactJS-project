@@ -3,7 +3,7 @@ import './styles.css';
 
 function ShoppingCart() {
   const [products, setProducts] = useState([]);
-  const totalSum = products.reduce((acc, cur) => acc + +cur.price, 0);
+  const totalSum = products.reduce((acc, cur) => acc + Number(cur.price), 0);
 
   // initial products fetch, similar to componentDidMount()
   useEffect(() => {
@@ -40,12 +40,12 @@ function ShoppingCart() {
           </thead>
           <tbody>
             {products.map((product, index) => {
-              const imageUrlSmall = product.imageUrl.replace('/upload/', '/upload/c_scale,w_100/');  // only when images are hosted in Cloudinary.com
+              const imageUrlSmall = product.imageUrl.replace('/dq2snomti/image/upload/', '/dq2snomti/image/upload/c_scale,w_100/');  // only when images are hosted at Cloudinary.com
 
               return <tr key={index}>
                 <td><img src={imageUrlSmall} width="100px" alt={product.description} /></td>
                 <td>{product.description}</td>
-                <td>{product.price} lv.</td>
+                <td>{Number(product.price).toFixed(2)} lv.</td>
                 <td><button onClick={() => removeProductFromCart(product.id)}>Remove product</button></td>
               </tr>
             })}
