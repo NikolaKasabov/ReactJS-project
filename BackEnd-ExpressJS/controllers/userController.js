@@ -58,7 +58,7 @@ module.exports = {
       .catch((err) => res.send({ 'message': err.toString() }));
   },
 
-  deleteProductFromDb: (req, res) => {
+  deleteProductFromDbPost: (req, res) => {
     const { productId } = req.params;
     const { username } = req.userData;
 

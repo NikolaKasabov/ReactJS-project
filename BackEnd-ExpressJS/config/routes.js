@@ -21,7 +21,7 @@ module.exports = (app) => {
 
   app.post('/addNewProduct', sendErrorIfNotLogged, userController.addNewProductToDbPost);
 
-  app.post('/deleteProductFromDb/:productId', sendErrorIfNotLogged, userController.deleteProductFromDb);
+  app.post('/deleteProductFromDb/:productId', sendErrorIfNotLogged, userController.deleteProductFromDbPost);
 
   app.all('*', (req, res) => res.status('404').send({ 'error': '404. Not found.' }));
 };
