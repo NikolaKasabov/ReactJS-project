@@ -46,28 +46,4 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
-  addNewProductToDbPost: (req, res) => {
-    const { description, imageUrl, price, category } = req.body;
-
-    ProductModel.create({
-      description,
-      imageUrl,
-      price: Number(price),
-      category
-    }).then(() => res.send({ 'message': 'Product created successfully.' }))
-      .catch((err) => res.send({ 'message': err.toString() }));
-  },
-
-  deleteProductFromDbPost: (req, res) => {
-    const { productId } = req.params;
-    const { username } = req.userData;
-
-    if (username !== 'admin') {
-      res.send({ 'error': 'Only the Administrator can delete products.' });
-    } else {
-      ProductModel.findByIdAndDelete(productId)
-        .then(() => res.send({'message': 'Product successfully deleted.'}))
-        .catch(() => res.send({ 'error': 'Something went wrong.' }));
-    }
-  },
 }

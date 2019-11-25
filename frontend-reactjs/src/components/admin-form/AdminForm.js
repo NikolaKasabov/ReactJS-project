@@ -5,14 +5,18 @@ function AdminForm() {
   const { changeMessage } = useContext(MessagesContext);
   const [productData, setProductData] = useState({
     'product-description': '',
-    'product-image-url': '',
+    // 'product-image-url': '',
     'product-price': '',
     'product-category': 'choose',
+    'product-image-file': null, //////////////
   });
 
   function onInputChange(ev) {
     const inputName = ev.target.name;
-    const inputValue = ev.target.value;
+    let inputValue = ev.target.value;
+
+    // file upload testing...
+    if (inputName === 'product-image-file') inputValue = ev.target.files[0]; ////////////////
 
     setProductData({
       ...productData,
@@ -24,17 +28,29 @@ function AdminForm() {
     ev.preventDefault();
     changeMessage('Adding product...');
 
+    // upload file testing.....
+    const formData = new FormData();
+    formData.append('description', productData['product-description']);
+    formData.append('imageFile', productData['product-image-file']);
+    formData.append('price', productData['product-price']);
+    formData.append('category', productData['product-category']);
+
+
     // send POST request to the express server with the new product data
-    fetch('http://localhost:5000/addNewProduct', {
+    fetch('http://localhost:5000/addNewProductToDb', {
       method: 'POST',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        description: productData['product-description'],
-        imageUrl: productData['product-image-url'],
-        price: productData['product-price'],
-        category: productData['product-category'],
-      }),
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({
+      //   description: productData['product-description'],
+      //   imageUrl: productData['product-image-url'],
+      //   price: productData['product-price'],
+      //   category: productData['product-category'],
+      // }),
+
+      // headers: { 'Content-Type': 'multipart/form-data' }, // no headers or it will throw Error: Boundary not found. //info: https://github.com/github/fetch/issues/505
+      body: formData, /////////////////////////
+
     }).then((result) => result.json())
       .then((json) => {
         changeMessage(json.message);
@@ -42,7 +58,8 @@ function AdminForm() {
           'product-description': '',
           'product-image-url': '',
           'product-price': '',
-          'product-category':'choose',
+          'product-category': 'choose',
+          'product-image-file': null,
         });
       })
       .catch(() => changeMessage('Something went wrong.'))
@@ -54,15 +71,19 @@ function AdminForm() {
 
       <form onSubmit={onFormSubmit}>
         <label htmlFor="product-description">Description: </label>
-        <input id="product-description" name="product-description" value={productData['product-description']} onChange={onInputChange} />
+        <input type="text" id="product-description" name="product-description" value={productData['product-description']} onChange={onInputChange} />
         <br />
 
-        <label htmlFor="product-image-url">Image URL: </label>
-        <input id="product-image-url" name="product-image-url" value={productData['product-image-url']} onChange={onInputChange} />
+        {/* <label htmlFor="product-image-url">Image URL: </label>
+        <input type="text" id="product-image-url" name="product-image-url" value={productData['product-image-url']} onChange={onInputChange} />
+        <br /> */}
+
+        <label htmlFor="product-image-file">Image: </label>
+        <input type="file" id="product-image-file" name="product-image-file" onChange={onInputChange} />
         <br />
 
         <label htmlFor="product-price">Price: </label>
-        <input id="product-price" name="product-price" type="number" step="0.01" min="0" value={productData['product-price']} onChange={onInputChange} />
+        <input type="number" id="product-price" name="product-price" step="0.01" min="0" value={productData['product-price']} onChange={onInputChange} />
         <br />
 
         <label htmlFor="product-category">Category: </label>

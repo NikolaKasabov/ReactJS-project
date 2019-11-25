@@ -25,7 +25,7 @@ class ProductsList extends Component {
     }
   }
 
-  // get selected category products from the express server and add them to the state
+  // get selected category products from the express server and add them to state
   fetchProductsAndAddToState = (category) => {
     fetch(`http://localhost:5000/products/${category}`, {
       // method: "GET",
@@ -37,7 +37,7 @@ class ProductsList extends Component {
       credentials: 'include', // without this react will NOT send the cookies with the request to the server
     }).then((dataAsReadableStream) => dataAsReadableStream.json())
       .then((dataAsJson) => this.setState({ products: dataAsJson }))
-      .catch((err) => console.log('in catch: ', err));
+      .catch((err) => console.log(err));
   }
 
   render() {
