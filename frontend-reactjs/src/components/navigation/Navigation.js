@@ -28,26 +28,32 @@ function Navigation(props) {
 
   return (
     <div className='navigation-container'>
-      <NavLink exact to='/' activeClassName='activeNav'>Home</NavLink>
-      <NavLink to='/products/tv' activeClassName='activeNav'>TV</NavLink>
-      <NavLink to='/products/laptop' activeClassName='activeNav'>Laptops</NavLink>
-      <NavLink to='/products/phone' activeClassName='activeNav'>Phones</NavLink>
+      <NavLink exact to='/' activeClassName='activeNav'>e-comm</NavLink>
 
-      {!isLoggedIn ? (
-        <>
-          <NavLink to='/login' activeClassName='activeNav'>Login</NavLink>
-          <NavLink to='/register' activeClassName='activeNav'>Register</NavLink>
-        </>
-      ) : (
-          <>
-            <NavLink to='/shoppingCart' activeClassName='activeNav'>{username}'s cart</NavLink>
-            {isAdmin && <NavLink to='/addNewProduct' activeClassName='activeNav'>Add Product</NavLink>}
-            <button onClick={onLogoutClick}>Logout</button>
-          </>
-        )}
-
+      <div className="navigation-products-links">
+        <NavLink to='/products/tv' activeClassName='activeNav'>tv sets</NavLink>
+        <NavLink to='/products/laptop' activeClassName='activeNav'>laptops</NavLink>
+        <NavLink to='/products/phone' activeClassName='activeNav'>phones</NavLink>
+      </div>
+      
       {/* SearchForm is in Route component so we can use redirect inside it (with props.history.push('/somePath')) */}
       <Route component={SearchForm} />
+
+      <div className="navigation-auth-links">
+        {!isLoggedIn ? (
+          <>
+            <NavLink to='/login' activeClassName='activeNav'>login</NavLink>
+            <NavLink to='/register' activeClassName='activeNav'>register</NavLink>
+          </>
+        ) : (
+            <>
+              <NavLink to='/shoppingCart' activeClassName='activeNav'>{username}'s cart</NavLink>
+              {isAdmin && <NavLink to='/addNewProduct' activeClassName='activeNav'>add product</NavLink>}
+              <button onClick={onLogoutClick}>logout</button>
+            </>
+          )}
+      </div>
+
     </div>
   )
 }

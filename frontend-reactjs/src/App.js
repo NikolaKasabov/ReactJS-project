@@ -26,7 +26,7 @@ class App extends Component {
           <Route component={Navigation} />
         </header>
 
-        <main>
+        <main className="App-main">
           <Route component={Message} />
 
           <Switch>
@@ -42,6 +42,10 @@ class App extends Component {
             <Route component={NotFound} />
           </Switch>
         </main>
+
+        <footer className="App-footer">
+          <p>Copyright &copy; 2019 <strong>e-comm</strong>. All rights reserved.</p>
+        </footer>
       </div>
     );
   }

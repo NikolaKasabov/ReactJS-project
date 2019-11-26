@@ -64,7 +64,7 @@ function SearchForm(props) {
 
   return (
     // <form onSubmit={onSubmit}>
-    <form>
+    <>
       <input
         type='text'
         placeholder='search products...'
@@ -72,7 +72,7 @@ function SearchForm(props) {
         onBlur={(ev) => ev.target.value = ''}
       />
       {/* <button type='submit'>Search</button> */}
-    </ form>
+    </ >
   )
 }
 

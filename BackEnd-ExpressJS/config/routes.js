@@ -8,6 +8,7 @@ const userController = require('../controllers/userController');
 const adminController = require('../controllers/adminController');
 
 const sendErrorIfNotLogged = require('../middlewares/sendErrorIfNotLogged');
+const sendErrorIfNotAdmin = require('../middlewares/sendErrorIfNotAdmin');
 
 module.exports = (app) => {
 
@@ -25,12 +26,12 @@ module.exports = (app) => {
 
   app.get('/seeShoppingCart', sendErrorIfNotLogged, userController.seeShoppingCartGet);
 
-  app.post('/addNewProductToDb', sendErrorIfNotLogged,
+  app.post('/addNewProductToDb', sendErrorIfNotLogged, sendErrorIfNotAdmin,
     upload.single('imageFile'),
     // multerUploads,
     adminController.addNewProductToDbPost);
 
-  app.post('/deleteProductFromDb/:productId', sendErrorIfNotLogged, adminController.deleteProductFromDbPost);
+  app.post('/deleteProductFromDb/:productId', sendErrorIfNotLogged, sendErrorIfNotAdmin, adminController.deleteProductFromDbPost);
 
   app.all('*', (req, res) => res.status('404').send({ 'error': '404. Not found.' }));
 };

@@ -79,7 +79,7 @@ function AdminForm() {
         <br /> */}
 
         <label htmlFor="product-image-file">Image: </label>
-        <input type="file" id="product-image-file" name="product-image-file" onChange={onInputChange} />
+        <input type="file" accept="image/*" id="product-image-file" name="product-image-file" onChange={onInputChange} />
         <br />
 
         <label htmlFor="product-price">Price: </label>
