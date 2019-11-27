@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import './styles.css';
 
 const Message = (props) => {
   const { message, changeMessage } = useContext(MessagesContext);
@@ -7,14 +8,9 @@ const Message = (props) => {
   // delete message(if there is one) on url change
   useEffect(() => {
     if (message) changeMessage('');
-
   }, [props.location.pathname]);
 
-  return (
-    <div className="message" >
-      {message ? <h3>{message}</h3> : null}
-    </div >
-  )
+  return message ? (<div className="message-container">{message}</div >) : null
 }
 
 export default Message;

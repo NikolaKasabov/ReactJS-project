@@ -1,0 +1,49 @@
+.add-product-form {
+  width: 25%;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 0.5rem;
+  background-color: #fff;
+  border: 1px solid rgb(146, 162, 255);
+}
+
+.add-product-form input,
+.add-product-form textarea,
+.add-product-form select,
+.add-product-form .select-file-label {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+  background-color: rgb(235, 235, 235);
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 0.3rem;
+  outline: none;
+}
+
+.add-product-form .select-file-label {
+  cursor: pointer;
+}
+
+.add-product-form input:hover,
+.add-product-form input:focus,
+.add-product-form textarea:hover,
+.add-product-form textarea:focus,
+.add-product-form select:hover,
+.add-product-form select:focus,
+.add-product-form .select-file-label:hover,
+.add-product-form .select-file-label:focus {
+  border: 1px solid rgb(146, 162, 255);
+}
+
+.add-product-form input[type="submit"] {
+  background-color: rgb(146, 162, 255);
+  color: #fff;
+  border: 1px solid rgb(146, 162, 255);
+}
+
+.add-product-form input[type="file"] {
+  display: none;
+}

@@ -21,7 +21,7 @@ module.exports = {
         imageUrl,
         price: Number(price),
         category
-      }).then(() => res.send({ 'message': 'Product created successfully.' }))
+      }).then(() => res.send({ 'message': 'product created successfully' }))
         .catch((err) => res.send({ 'message': err.toString() }));
       
     }).catch((err) => console.log(err));
@@ -32,11 +32,11 @@ module.exports = {
     const { username } = req.userData;
 
     if (username !== 'admin') {
-      res.send({ 'error': 'Only the Administrator can delete products.' });
+      res.send({ 'error': 'only the Administrator can delete products' });
     } else {
       ProductModel.findByIdAndDelete(productId)
-        .then(() => res.send({ 'message': 'Product successfully deleted.' }))
-        .catch(() => res.send({ 'error': 'Something went wrong.' }));
+        .then(() => res.send({ 'message': 'product successfully deleted' }))
+        .catch(() => res.send({ 'error': 'something went wrong' }));
     }
   },
 };

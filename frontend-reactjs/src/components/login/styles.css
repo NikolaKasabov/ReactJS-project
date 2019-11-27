@@ -1,52 +1,42 @@
-.register-form {
+.login-form {
   width: 25%;
   padding: 2rem;
 
   display: flex;
   flex-direction: column;
-
+  
   border-radius: 0.5rem;
   background-color: #fff;
   border: 1px solid rgb(146, 162, 255);
 }
 
-.register-form input {
+.login-form input {
   margin-bottom: 2rem;
   padding: 1rem;
   font-size: 1.3rem;
-  /* background-color: rgb(235, 235, 235); */
+  background-color: rgb(235, 235, 235);
   border: 1px solid rgb(235, 235, 235);
   border-radius: 0.3rem;
   outline: none;
 }
 
-.register-form input:hover,
-.register-form input:focus {
+.login-form input:hover,
+.login-form input:focus {
   border: 1px solid rgb(146, 162, 255);
 }
 
-.register-form input[type="submit"] {
+.login-form input[type="submit"] {
   background-color: rgb(146, 162, 255);
   color: #fff;
   border: 1px solid rgb(146, 162, 255);
 }
 
-.register-form p {
+.login-form p {
   text-align: center;
   font-size: 0.9rem;
 }
 
-.register-form p a {
+.login-form p a {
   text-decoration: none;
   color: rgb(146, 162, 255);
-}
-
-.regiter-username,
-.regiter-password,
-.regiter-repeat-password {
-  background-color: rgb(226, 255, 226);
-}
-
-.warning {
-  background-color: rgb(250, 226, 226);
 }

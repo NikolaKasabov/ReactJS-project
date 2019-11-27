@@ -1,13 +1,5 @@
-/* body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 /* @import url('https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu&display=swap'); */
-
 
 html, body, div, span, applet, object, iframe,
 p, blockquote, pre,
@@ -35,13 +27,20 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+
+* {
+  font-family: 'Open sans';
+}
+
+html {
+  font-size: 14px;
+}
+
 body {
   line-height: 1.5;
   font-family: 'Open sans';
   /* font-family: 'Ubuntu'; */
-  background-color: rgb(235, 235, 250);
-
-  font-size: 14px;
+  /* background-color: rgb(235, 235, 250); */
 }
 
 ol, ul {
@@ -63,7 +62,8 @@ table {
 	border-spacing: 0;
 }
 
-button {
+button,
+input[type="submit"] {
   font-family: 'Open sans';
   cursor: pointer;
 }

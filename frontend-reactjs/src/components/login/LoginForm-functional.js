@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import './styles.css';
 
 const LoginForm = (props) => {
   const { changeMessage } = useContext(MessagesContext);
@@ -8,7 +9,7 @@ const LoginForm = (props) => {
     password: '',
   });
 
-  document.title = 'Login';
+  document.title = 'login';
 
   // on user typing
   const onInputChange = (ev) => {
@@ -53,14 +54,15 @@ const LoginForm = (props) => {
 
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <label htmlFor="login-username">Username: </label>
-      <input type="text" id="login-username" name="username" onChange={onInputChange} value={userData.username} />
-      <br />
-      <label htmlFor="login-password">Password: </label>
-      <input type="password" id="login-password" name="password" onChange={onInputChange} value={userData.password} />
-      <br />
-      <input type="submit" value="Login" />
+    <form className="login-form" onSubmit={onFormSubmit} >
+      {/* <label htmlFor="login-username">Username: </label> */}
+      <input type="text" id="login-username" name="username" placeholder="username" onChange={onInputChange} value={userData.username} />
+      {/* <br /> */}
+      {/* <label htmlFor="login-password">Password: </label> */}
+      <input type="password" id="login-password" name="password" placeholder="password" onChange={onInputChange} value={userData.password} />
+      {/* <br /> */}
+      <input type="submit" value="LOGIN" />
+      <p>Not registered? <a href="/register">Create an account</a></p>
     </form>
   )
 }

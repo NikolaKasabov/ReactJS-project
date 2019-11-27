@@ -10,7 +10,7 @@ const RegisterForm = (props) => {
     repeatPassword: '',
   });
 
-  document.title = 'Register';
+  document.title = 'register';
 
   // change input fields background color: red/green
   let classNameUsername = 'regiter-username';
@@ -46,10 +46,10 @@ const RegisterForm = (props) => {
       }),
     }).then((result) => {
       if (result.status === 200) {
-        changeMessage('Registration successful.');
-
-        // redirect to login page
-        props.history.push('/login');
+        changeMessage('registration successful. redirecting to login page...');
+        
+        // redirect to login page after some delay
+        setTimeout(() => props.history.push('/login'), 2500);
       } else {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
@@ -59,17 +59,18 @@ const RegisterForm = (props) => {
 
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <label htmlFor="register-username">Username: </label>
-      <input type="text" id="register-username" name="username" className={classNameUsername} placeholder="min 5 chars..." onChange={onInputChange} />
-      <br />
-      <label htmlFor="register-password">Password: </label>
-      <input type="password" id="register-password" name="password" className={classNamePassword} placeholder="min 5 chars..." onChange={onInputChange} />
-      <br />
-      <label htmlFor="register-repeat-password">Repeat password: </label>
-      <input type="password" id="register-repeat-password" name="repeatPassword" className={classNameRepeatPassword} placeholder="same as password..." onChange={onInputChange} />
-      <br />
-      <input type="submit" value="Register" />
+    <form className="register-form" onSubmit={onFormSubmit}>
+      {/* <label htmlFor="register-username">Username: </label> */}
+      <input type="text" id="register-username" name="username" className={classNameUsername} placeholder="username, min 5 chars" onChange={onInputChange} />
+      {/* <br /> */}
+      {/* <label htmlFor="register-password">Password: </label> */}
+      <input type="password" id="register-password" name="password" className={classNamePassword} placeholder="password, min 5 chars" onChange={onInputChange} />
+      {/* <br /> */}
+      {/* <label htmlFor="register-repeat-password">Repeat password: </label> */}
+      <input type="password" id="register-repeat-password" name="repeatPassword" className={classNameRepeatPassword} placeholder="repeat password" onChange={onInputChange} />
+      {/* <br /> */}
+      <input type="submit" value="REGISTER" />
+      <p><a href="/login">Already have an account?</a></p>
     </form>
   )
 }

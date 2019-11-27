@@ -1,0 +1,12 @@
+.message-container {
+  position: fixed;
+  top: 10rem;
+
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: #fff;
+  /* border: 1px solid rgb(146, 162, 255); */
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem 0.5rem rgba(146, 162, 255, 0.8),
+   inset 0 0 0.5rem 0rem rgba(146, 162, 255, 0.8);
+}

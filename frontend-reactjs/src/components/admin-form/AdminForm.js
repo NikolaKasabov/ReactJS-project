@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import './styles.css';
 
 function AdminForm() {
   const { changeMessage } = useContext(MessagesContext);
@@ -10,6 +11,8 @@ function AdminForm() {
     'product-category': 'choose',
     'product-image-file': null, //////////////
   });
+
+  document.title = 'add product';
 
   function onInputChange(ev) {
     const inputName = ev.target.name;
@@ -26,7 +29,14 @@ function AdminForm() {
 
   function onFormSubmit(ev) {
     ev.preventDefault();
-    changeMessage('Adding product...');
+
+    // input validations
+    if (!productData["product-description"]) { return changeMessage('must add description'); }
+    else if (!productData["product-image-file"]) { return changeMessage('must select image file'); }
+    else if (!productData["product-price"]) { return changeMessage('must add price'); }
+    else if (productData["product-category"] === 'choose') { return changeMessage('must choose category'); }
+
+    changeMessage('adding product...');
 
     // upload file testing.....
     const formData = new FormData();
@@ -53,7 +63,7 @@ function AdminForm() {
 
     }).then((result) => result.json())
       .then((json) => {
-        changeMessage(json.message);
+        changeMessage(json.message, true, 2000);
         setProductData({
           'product-description': '',
           'product-image-url': '',
@@ -67,35 +77,36 @@ function AdminForm() {
 
   return (
     <>
-      <h2>Product data:</h2>
+      {/* <h1>product data:</h1> */}
 
-      <form onSubmit={onFormSubmit}>
-        <label htmlFor="product-description">Description: </label>
-        <input type="text" id="product-description" name="product-description" value={productData['product-description']} onChange={onInputChange} />
-        <br />
+      <form className="add-product-form" onSubmit={onFormSubmit}>
+        {/* <label htmlFor="product-description">Description: </label> */}
+        {/* <input type="text" id="product-description" name="product-description" placeholder="product description" value={productData['product-description']} onChange={onInputChange} /> */}
+        <textarea placeholder="description" name="product-description" rows="3" value={productData['product-description']} onChange={onInputChange}></textarea>
+        {/* <br /> */}
 
         {/* <label htmlFor="product-image-url">Image URL: </label>
         <input type="text" id="product-image-url" name="product-image-url" value={productData['product-image-url']} onChange={onInputChange} />
         <br /> */}
 
-        <label htmlFor="product-image-file">Image: </label>
+        <label htmlFor="product-image-file" className="select-file-label">{productData['product-image-file'] ? 'image selected' : 'click to select image'}</label>
         <input type="file" accept="image/*" id="product-image-file" name="product-image-file" onChange={onInputChange} />
-        <br />
+        {/* <br /> */}
 
-        <label htmlFor="product-price">Price: </label>
-        <input type="number" id="product-price" name="product-price" step="0.01" min="0" value={productData['product-price']} onChange={onInputChange} />
-        <br />
+        {/* <label htmlFor="product-price">Price: </label> */}
+        <input type="number" id="product-price" name="product-price" placeholder="price" step="0.01" min="0" value={productData['product-price']} onChange={onInputChange} />
+        {/* <br /> */}
 
-        <label htmlFor="product-category">Category: </label>
+        {/* <label htmlFor="product-category">Category: </label> */}
         <select name="product-category" id="product-category" value={productData['product-category']} onChange={onInputChange}>
-          <option value="choose">choose one...</option>
+          <option value="choose">choose category...</option>
           <option value="tv">tv</option>
           <option value="phone">phone</option>
           <option value="laptop">laptop</option>
         </select>
         <br />
 
-        <button type="submit">Add Product</button>
+        <input type="submit" value="ADD PRODUCT" />
       </form>
     </>
   );

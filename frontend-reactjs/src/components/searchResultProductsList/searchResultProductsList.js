@@ -7,13 +7,13 @@ import './styles.css';
 function SearchResultProductsList() {
   const { searchResult } = useContext(SearchResultContext);
 
-  document.title = 'Search results';
+  document.title = 'search results';
 
   return (
     <div>
       {searchResult.length > 0 ? (
         <>
-          <h2 className="search-result-title">search results :</h2>
+          {/* <h2 className="search-result-title">search results:</h2> */}
           <div className="products-list">
             {searchResult.map((product, index) => {
               return <ProductCard
@@ -26,7 +26,7 @@ function SearchResultProductsList() {
             })}
           </div>
         </>
-      ) : <h2 className="search-result-title">No products found.</h2>}
+      ) : <h2 className="search-result-title">no products found</h2>}
     </div>
   );
 }

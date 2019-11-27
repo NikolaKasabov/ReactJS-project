@@ -42,7 +42,7 @@ class ProductsList extends Component {
   }
 
   render() {
-    document.title = 'Products';
+    document.title = 'products';
 
     return (
       <div className="products-list">

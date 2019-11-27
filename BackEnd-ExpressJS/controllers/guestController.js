@@ -31,11 +31,11 @@ module.exports = {
     UserModel.findOne({ 'username': username })
       .then((user) => {
         if (user) {
-          res.status(400).send({ 'error': 'This username is already taken. Choose another.' });
+          res.status(400).send({ 'error': 'this username is already taken, choose another' });
         } else if (username.length < 5 || password.length < 5) {
-          res.status(400).send({ 'error': 'The username and the password must be at least 5 characters long.' });
+          res.status(400).send({ 'error': 'the username and the password must be at least 5 characters long' });
         } else if (password !== repeatPassword) {
-          res.status(400).send({ 'error': 'Password and repeat password must match.' });
+          res.status(400).send({ 'error': 'password and repeat password must match' });
         } else {
           // hash the password
           bcrypt.genSalt(saltRounds)
@@ -47,8 +47,8 @@ module.exports = {
               // add the new user to mongodb collection 'Users'
               return UserModel.create({ username, password: hashedPass });
             })
-            .then(() => res.send({ 'message': 'Registration successful.' }))
-            .catch((err) => res.status(400).send({ 'error': 'Registration not successful.' }));
+            .then(() => res.send({ 'message': 'registration successful' }))
+            .catch((err) => res.status(400).send({ 'error': 'registration not successful' }));
         }
       })
   },
@@ -61,7 +61,7 @@ module.exports = {
       .then((userData) => {
         // if username is invalid
         if (!userData) {
-          res.status(401).send({ 'error': 'Invalid username and/or password.' });
+          res.status(401).send({ 'error': 'invalid username and/or password' });
           return;
         }
 
@@ -70,7 +70,7 @@ module.exports = {
           .then((isPassValid) => {
             // if password is invalid
             if (!isPassValid) {
-              res.status(401).send({ 'error': 'Invalid username and/or password.' });
+              res.status(401).send({ 'error': 'invalid username and/or password' });
               return;
             }
 

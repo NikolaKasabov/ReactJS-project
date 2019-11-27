@@ -1,0 +1,14 @@
+.search-input {
+  width: 25%;
+  padding: 0.8rem;
+  font-size: 1.3rem;
+  background-color: rgb(235,235,250);
+  border: 1px solid rgb(51, 51, 51);
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.search-input:hover,
+.search-input:focus {
+  border: 1px solid rgb(146, 162, 255);
+}

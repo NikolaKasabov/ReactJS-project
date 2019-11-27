@@ -1,6 +1,7 @@
 // import React, { useContext, useState } from 'react';
 import React, { useContext } from 'react';
 import { SearchResultContext } from '../../contexts/SearchResultContext';
+import './styles.css';
 
 function SearchForm(props) {
   // const [searchString, setSearchString] = useState('');
@@ -65,7 +66,7 @@ function SearchForm(props) {
   return (
     // <form onSubmit={onSubmit}>
     <>
-      <input
+      <input className="search-input"
         type='text'
         placeholder='search products...'
         onChange={onInputChange}
@@ -73,6 +74,7 @@ function SearchForm(props) {
       />
       {/* <button type='submit'>Search</button> */}
     </ >
+    // </form>
   )
 }
 

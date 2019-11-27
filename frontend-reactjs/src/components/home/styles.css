@@ -1,0 +1,15 @@
+.home-page {
+  text-align: center;
+}
+
+.home-page span{
+  color: rgb(146, 162, 255);
+}
+
+.home-page h1 {
+  font-size: 5rem;
+}
+
+.home-page h2 {
+  font-size: 2rem;
+}

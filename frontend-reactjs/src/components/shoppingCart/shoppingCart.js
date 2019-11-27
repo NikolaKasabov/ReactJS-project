@@ -5,6 +5,8 @@ function ShoppingCart() {
   const [products, setProducts] = useState([]);
   const totalSum = products.reduce((acc, cur) => acc + Number(cur.price), 0);
 
+  document.title = 'shopping cart';
+
   // initial products fetch, similar to componentDidMount()
   useEffect(() => {
     fetchProducts();
