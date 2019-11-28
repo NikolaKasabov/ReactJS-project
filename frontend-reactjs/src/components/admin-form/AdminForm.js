@@ -18,7 +18,7 @@ function AdminForm() {
     const inputName = ev.target.name;
     let inputValue = ev.target.value;
 
-    // file upload testing...
+    // for file upload field:
     if (inputName === 'product-image-file') inputValue = ev.target.files[0]; ////////////////
 
     setProductData({
@@ -35,10 +35,10 @@ function AdminForm() {
     else if (!productData["product-image-file"]) { return changeMessage('must select image file'); }
     else if (!productData["product-price"]) { return changeMessage('must add price'); }
     else if (productData["product-category"] === 'choose') { return changeMessage('must choose category'); }
+    else { changeMessage('adding product...'); }
 
-    changeMessage('adding product...');
 
-    // upload file testing.....
+    // must use FormData when uploading a file
     const formData = new FormData();
     formData.append('description', productData['product-description']);
     formData.append('imageFile', productData['product-image-file']);

@@ -1,9 +1,10 @@
 @keyframes product-card-show {
-  0%   { 
+  0% {
     opacity: 0;
     transform: scale(1.02);
   }
-  100% { 
+
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -20,9 +21,11 @@
   border: 1px solid rgb(151, 151, 181);
   border-radius: 0.5rem;
   background-color: #fff;
-  
+
   transition: box-shadow 0.2s;
   animation: product-card-show 0.3s ease-in;
+
+  font-size: 1rem;
 }
 
 .product-card:hover {
@@ -34,10 +37,42 @@
   padding-top: 0.5rem;
 }
 
-.product-card-buttons {
-  padding: 0.5rem 0;
+.product-card-price {
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
-.product-card-buttons button:first-child {
-  margin-right: 0.3rem;
+.product-card-buttons {
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product-card-buttons button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid rgb(146, 162, 255);
+  /* font-size: 1.2rem; */
+  background-color: rgb(146, 162, 255);
+  color: #fff;
+  outline: none;
+  transition: background-color 0.2s ease-in, border-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.product-card-buttons button:hover {
+  background-color: #fff;
+  color: rgb(146, 162, 255);
+  border-color: rgb(146, 162, 255);
+}
+
+.product-card-buttons button.delete-product{
+  border: 1px solid rgb(255, 100, 100);
+  background-color: rgb(255, 100, 100);
+
+}
+
+.product-card-buttons button.delete-product:hover{
+  background-color: #fff;
+  color: rgb(255, 100, 100);
+  border-color: rgb(255, 100, 100);
 }

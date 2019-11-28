@@ -36,7 +36,7 @@
   border-bottom: 1px solid rgb(146, 162, 255);
 }
 
-.navigation-container .activeNav:hover{
+.navigation-container .activeNav:hover {
   border-color: rgb(146, 162, 255);
 }
 
@@ -49,4 +49,15 @@
 .navigation-auth-links button {
   display: inline-block;
   margin-left: 2rem;
+}
+
+@media (max-width: 1400px) {
+  .navigation-products-links a {
+    margin-right: 1rem;
+  }
+
+  .navigation-auth-links a,
+  .navigation-auth-links button {
+    margin-left: 1rem;
+  }
 }

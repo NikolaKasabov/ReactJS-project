@@ -26,7 +26,7 @@ function SearchResultProductsList() {
             })}
           </div>
         </>
-      ) : <h2 className="search-result-title">no products found</h2>}
+      ) : <h1 className="search-result-title">no products found</h1>}
     </div>
   );
 }

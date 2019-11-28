@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 /* @import url('https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu&display=swap'); */
 
-html, body, div, span, applet, object, iframe,
+/* html, body, div, span, applet, object, iframe,
 p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -18,29 +18,31 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font-size: 1rem;
 	vertical-align: baseline;
+} */
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; 
+  font: inherit;
+}
+
+html {
+  font: 14px/1.5 'Open sans', sans-serif; 
+  box-sizing: border-box; 
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-}
-
-
-* {
-  font-family: 'Open sans';
-}
-
-html {
-  font-size: 14px;
-}
-
-body {
-  line-height: 1.5;
-  font-family: 'Open sans';
-  /* font-family: 'Ubuntu'; */
-  /* background-color: rgb(235, 235, 250); */
 }
 
 ol, ul {
@@ -64,6 +66,12 @@ table {
 
 button,
 input[type="submit"] {
-  font-family: 'Open sans';
+  /* font-family: 'Open sans'; */
   cursor: pointer;
+}
+
+@media (max-width: 1400px){
+  html {
+    font-size: 12px;
+  }
 }

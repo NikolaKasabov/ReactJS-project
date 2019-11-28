@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 // import App from './App-functional';
@@ -14,7 +14,8 @@ ReactDOM.render((
   <BrowserRouter>
     <MessagesContextProvider>
       <SearchResultContextProvider>
-        <App />
+        {/* <App /> */}
+        <Route component={App} />
       </SearchResultContextProvider>
     </MessagesContextProvider>
   </BrowserRouter>

@@ -21,7 +21,7 @@ module.exports = {
         imageUrl,
         price: Number(price),
         category
-      }).then(() => res.send({ 'message': 'product created successfully' }))
+      }).then(() => res.send({ 'message': 'product added successfully' }))
         .catch((err) => res.send({ 'message': err.toString() }));
       
     }).catch((err) => console.log(err));

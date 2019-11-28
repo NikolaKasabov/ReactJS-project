@@ -47,3 +47,18 @@
 .add-product-form input[type="file"] {
   display: none;
 }
+
+@media (max-width: 1400px) {
+  .add-product-form {
+    /* padding: 1rem; */
+  }
+
+  .add-product-form input,
+  .add-product-form textarea,
+  .add-product-form select,
+  .add-product-form .select-file-label {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

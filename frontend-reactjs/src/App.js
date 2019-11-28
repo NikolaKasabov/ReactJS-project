@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -17,38 +17,44 @@ import SearchResultProductsList from './components/searchResultProductsList/sear
 import AdminForm from './components/admin-form/AdminForm';
 import NotFound from './components/404/404';
 
-class App extends Component {
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Route component={Navigation} />
-        </header>
+function App(props) {
+  const url = props.location.pathname;
+  let appMainClass = 'App-main';
 
-        <main className="App-main">
-          <Route component={Message} />
+  if (url === '/products/tv') { appMainClass += ' products-tv' }
+  else if (url === '/products/laptop') { appMainClass += ' products-laptop' }
+  else if (url === '/products/phone') { appMainClass += ' products-phone' }
+  else {appMainClass += ' home'}
 
-          <Switch>
-            <Route exact path='/' component={Home} />
-            {/* using 'render' if must pass props to the component */}
-            {/* <Route exact path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} /> */}
-            <Route path='/login' component={LoginForm} />
-            <Route path='/register' component={RegisterForm} />
-            <Route path='/products/:category' component={ProductsList} />
-            <Route path='/shoppingCart' component={ShoppingCart} />
-            <Route path='/search' component={SearchResultProductsList} />
-            <Route path='/addNewProduct' component={AdminForm} />
-            <Route component={NotFound} />
-          </Switch>
-        </main>
+  return (
+    <div className="App">
+      <header className="App-header">
+        <Route component={Navigation} />
+      </header>
 
-        <footer className="App-footer">
-          <p>Copyright &copy; 2019 <strong>e-comm</strong>. All rights reserved.</p>
-        </footer>
-      </div>
-    );
-  }
+      <main className={appMainClass}>
+        <Route component={Message} />
+
+        <Switch>
+          <Route exact path='/' component={Home} />
+          {/* using 'render' if must pass props to the component */}
+          {/* <Route exact path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} /> */}
+          <Route path='/login' component={LoginForm} />
+          <Route path='/register' component={RegisterForm} />
+          <Route path='/products/:category' component={ProductsList} />
+          <Route path='/shoppingCart' component={ShoppingCart} />
+          <Route path='/search' component={SearchResultProductsList} />
+          <Route path='/addNewProduct' component={AdminForm} />
+          <Route component={NotFound} />
+        </Switch>
+      </main>
+
+      <footer className="App-footer">
+        <p>Copyright &copy; 2019 <strong>e-comm</strong>. All rights reserved.</p>
+      </footer>
+    </div>
+  );
 }
 
 export default App;

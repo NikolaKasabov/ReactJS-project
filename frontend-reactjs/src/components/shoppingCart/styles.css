@@ -1,14 +1,52 @@
 .shopping-cart-table {
-  border-collapse: collapse;
+  margin: 2rem 0;
+  border-collapse: separate;
+  border-spacing: 0 5px;
 }
 
-.shopping-cart-table td,
-.shopping-cart-table th{
-  border: 1px solid black;
-
+.shopping-cart-table tr {
+  background-color: #fff;
 }
 
-.total-sum {
+.shopping-cart-table tr td {
+  padding: 0.5rem 1rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(146, 162, 255, 0.6);
+  border-bottom: 1px solid rgba(146, 162, 255, 0.6);
+}
+
+.shopping-cart-table tr td:first-child {
+  border-top-left-radius: 0.6rem;
+  border-bottom-left-radius: 0.6rem;
+}
+
+.shopping-cart-table tr td:last-child {
+  border-top-right-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+}
+
+.shopping-cart-table .total-sum {
   padding: 1rem;
   text-align: right;
+}
+
+
+
+
+.delete-product {
+  padding: 0.3rem 1rem;
+  color: #fff;
+  border-radius: 0.3rem;
+  outline: none;
+
+  border: 1px solid rgb(255, 100, 100);
+  background-color: rgb(255, 100, 100);
+
+  transition: background-color 0.2s ease-in, border-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.delete-product:hover {
+  background-color: #fff;
+  color: rgb(255, 100, 100);
+  border-color: rgb(255, 100, 100);
 }

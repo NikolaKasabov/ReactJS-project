@@ -3,15 +3,16 @@ import Cookies from 'js-cookie';
 import './styles.css';
 
 import AddProductToCartButton from '../AddProductToCartButton/AddProductToCartButton';
+import DeleteProductFromDbButton from '../DeleteProductFromDbButton/DeleteProductFromDbButton';
 
-import deleteProductFromDb from '../../utils/deleteProductFromDb';
+// import deleteProductFromDb from '../../utils/deleteProductFromDb';
 
 function ProductCard(props) {
   const { id, imageUrl, description, price } = props;
   const imageUrlSmall = imageUrl.replace('/dq2snomti/image/upload/', '/dq2snomti/image/upload/c_scale,w_200/');  // only when images are hosted at Cloudinary.com
   const isLogged = Cookies.get('jwt') ? true : false;
   const isAdmin = Cookies.get('username') === 'admin' ? true : false;
-  const deleteProductFromDbButton = <button onClick={() => deleteProductFromDb(id)}>delete product</button>
+  // const deleteProductFromDbButton = <button onClick={() => deleteProductFromDb(id)}>delete product</button>
 
   return (
     <div className="product-card">
@@ -21,7 +22,7 @@ function ProductCard(props) {
       <p className="product-card-price">{price} lv.</p>
       <div className="product-card-buttons">
         {isLogged && <AddProductToCartButton id={id} />}
-        {isAdmin && deleteProductFromDbButton}
+        {isAdmin && <DeleteProductFromDbButton id={id} />}
       </div>
     </div>
   )

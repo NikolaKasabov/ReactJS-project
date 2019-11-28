@@ -1,6 +1,8 @@
 .App {
   min-height: 100vh;
   position: relative;
+  /* padding-bottom is same size as the footer height */
+  padding-bottom: 4rem;
 }
 
 .App-header {
@@ -13,16 +15,29 @@
 }
 
 .App-main {
-  /* padding-bottom is same size as the footer height */
-  padding-bottom: 4rem;
-  min-height: calc(100vh - 14rem);
+  /* header + footer heights = 10rem */
+  min-height: calc(100vh - 10rem);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  background: linear-gradient(to bottom,rgba(235, 235, 250, 0.96), rgba(235, 235, 250, 0.96)), url("https://res.cloudinary.com/dq2snomti/image/upload/v1574841569/softuni-reactjs-project/home-background_rpby83.jpg") center / cover no-repeat;
+.App-main.home{
+  background: linear-gradient(to bottom,rgba(235, 235, 250, 0.95), rgba(235, 235, 250, 0.95)), url("https://res.cloudinary.com/dq2snomti/image/upload/v1574841569/softuni-reactjs-project/home-background_rpby83.jpg") center / cover no-repeat;
+}
+
+.App-main.products-tv{
+  background: linear-gradient(to bottom,rgba(235, 235, 250, 0.92), rgba(235, 235, 250, 0.92)), url("https://res.cloudinary.com/dq2snomti/image/upload/v1574928213/softuni-reactjs-project/tv6_aboxtv.jpg") center / cover no-repeat;
+}
+
+.App-main.products-laptop{
+  background: linear-gradient(to bottom,rgba(235, 235, 250, 0.92), rgba(235, 235, 250, 0.92)), url("https://res.cloudinary.com/dq2snomti/image/upload/v1574923948/softuni-reactjs-project/laptops1-background_hnnc3d.jpg") center / cover no-repeat;
+}
+
+.App-main.products-phone{
+  background: linear-gradient(to bottom,rgba(235, 235, 250, 0.92), rgba(235, 235, 250, 0.92)), url("https://res.cloudinary.com/dq2snomti/image/upload/v1574924407/softuni-reactjs-project/phones1_jrjoie.jpg") center / cover no-repeat;
 }
 
 .App-footer {
