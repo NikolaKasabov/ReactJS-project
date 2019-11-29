@@ -3,8 +3,8 @@ const ProductModel = require('../models/Product.js');
 
 module.exports = {
   addNewProductToDbPost: (req, res) => {
-    const { description, imageUrl, price, category } = req.body;
-    // uploaded file path; added by 'multer'
+    const { description, price, category } = req.body;
+    // uploaded file path, added by 'multer'
     const filePath = req.file.path;
 
     // check if selected file is an image. send error if it's not an image.

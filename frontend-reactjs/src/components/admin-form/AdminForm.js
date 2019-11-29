@@ -95,7 +95,7 @@ function AdminForm() {
         <input type="text" id="product-image-url" name="product-image-url" value={productData['product-image-url']} onChange={onInputChange} />
         <br /> */}
 
-        <label htmlFor="product-image-file" className="select-file-label">{productData['product-image-file'] ? 'file selected' : 'click to select image file'}</label>
+        <label htmlFor="product-image-file" className="select-file-label">{productData['product-image-file'] ? 'file selected' : 'click to select an image file'}</label>
         <input type="file" accept="image/*" id="product-image-file" name="product-image-file" onChange={onInputChange} />
         {/* <br /> */}
 

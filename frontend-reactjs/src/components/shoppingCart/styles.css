@@ -11,8 +11,8 @@
 .shopping-cart-table tr td {
   padding: 0.5rem 1rem;
   overflow: hidden;
-  border-top: 1px solid rgba(146, 162, 255, 0.6);
-  border-bottom: 1px solid rgba(146, 162, 255, 0.6);
+  border-top: 1px solid rgba(146, 162, 255, 0.8);
+  border-bottom: 1px solid rgba(146, 162, 255, 0.8);
 }
 
 .shopping-cart-table tr td:first-child {

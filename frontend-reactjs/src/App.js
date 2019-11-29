@@ -25,7 +25,7 @@ function App(props) {
   if (url === '/products/tv') { appMainClass += ' products-tv' }
   else if (url === '/products/laptop') { appMainClass += ' products-laptop' }
   else if (url === '/products/phone') { appMainClass += ' products-phone' }
-  else {appMainClass += ' home'}
+  else { appMainClass += ' home' }
 
   return (
     <div className="App">
