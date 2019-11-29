@@ -9,18 +9,18 @@ function ShoppingCart() {
 
   // initial products fetch, similar to componentDidMount()
   useEffect(() => {
-    fetchProducts();
+    fetchProductsAndAddToState();
   }, []);
 
   function removeProductFromCart(productId) {
     fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
       method: 'POST',
       credentials: 'include',
-    }).then(() => fetchProducts())
+    }).then(() => fetchProductsAndAddToState())
       .catch((err) => console.log(err));
   }
 
-  function fetchProducts() {
+  function fetchProductsAndAddToState() {
     fetch('http://localhost:5000/seeShoppingCart', {
       credentials: 'include',
     }).then((result) => result.json())
