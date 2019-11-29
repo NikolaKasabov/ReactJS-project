@@ -59,7 +59,7 @@ function AdminForm() {
       // }),
 
       // headers: { 'Content-Type': 'multipart/form-data' }, // no headers or it will throw Error: Boundary not found. //info: https://github.com/github/fetch/issues/505
-      body: formData, /////////////////////////
+      body: formData,
 
     }).then((result) => result.json())
       .then((json) => {
