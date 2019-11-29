@@ -33,7 +33,8 @@ module.exports = {
     const { userId } = req.userData;
 
     UserModel.findByIdAndUpdate(userId,
-      { $pull: { 'shoppingCart': {'id': productId} } }
+      { $pull: { 'shoppingCart': { 'id': productId } } },
+      {'useFindAndModify': false}, // without this option Mongoose throws deprecation warning
     ).then(() => res.send({ 'message': 'product successfully removed from the shopping cart' }))
       .catch((err) => console.log(err));
   },

@@ -7,6 +7,13 @@ module.exports = {
     // uploaded file path; added by 'multer'
     const filePath = req.file.path;
 
+    // check if selected file is an image. send error if it's not an image.
+    const fileType = req.file.mimetype.split('/')[0];
+    if (fileType !== 'image') {
+      res.send({ 'error': 'selected file is not an image' });
+      return;
+    }
+
     // upload provided image file to Cloudinary
     myCloudinary.uploader.upload(filePath, {
       folder: 'softuni-reactjs-project',  // wich folder in Cloudinary to use
@@ -22,7 +29,7 @@ module.exports = {
         price: Number(price),
         category
       }).then(() => res.send({ 'message': 'product added successfully' }))
-        .catch((err) => res.send({ 'message': err.toString() }));
+        .catch((err) => res.send({ 'error': err.toString() }));
       
     }).catch((err) => console.log(err));
   },
