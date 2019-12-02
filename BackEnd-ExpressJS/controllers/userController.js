@@ -52,7 +52,7 @@ module.exports = {
 
     UserModel.findByIdAndUpdate(userId,
       { 'shoppingCart': [] })
-      .then(() => res.json({ 'message': 'checkout successful' }))
+      .then(() => res.json({ 'message': 'thanks for shopping from us. checkout successful' }))
       .catch((err) => console.log(err));
   },
 }

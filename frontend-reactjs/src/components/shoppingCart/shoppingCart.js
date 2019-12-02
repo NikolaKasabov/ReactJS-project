@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { MessagesContext } from '../../contexts/MessagesContext';
 import './styles.css';
 
-function ShoppingCart() {
+function ShoppingCart(props) {
+  const { changeMessage } = useContext(MessagesContext);
   const [products, setProducts] = useState([]);
   const totalSum = products.reduce((acc, cur) => acc + Number(cur.price), 0);
 
@@ -27,7 +29,10 @@ function ShoppingCart() {
     }).then((response) => response.json())
       .then((result) => {
         if (result.message) {
-          setTimeout()
+          changeMessage(result.message);
+          setTimeout(() => {
+            props.history.push('/');
+          }, 2500);
         }
       }).catch((err) => console.log(err));
   }
