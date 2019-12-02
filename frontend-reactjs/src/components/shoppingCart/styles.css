@@ -15,6 +15,10 @@
   border-bottom: 1px solid rgba(146, 162, 255, 0.8);
 }
 
+.shopping-cart-table tbody tr td:nth-child(2) {
+  width: 35rem;
+}
+
 .shopping-cart-table tr td:first-child {
   border-top-left-radius: 0.6rem;
   border-bottom-left-radius: 0.6rem;
@@ -23,30 +27,43 @@
 .shopping-cart-table tr td:last-child {
   border-top-right-radius: 0.6rem;
   border-bottom-right-radius: 0.6rem;
+  text-align: center;
 }
 
 .shopping-cart-table .total-sum {
   padding: 1rem;
   text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-
-
-
-.delete-product {
+.shopping-cart-table button {
   padding: 0.3rem 1rem;
   color: #fff;
   border-radius: 0.3rem;
   outline: none;
-
-  border: 1px solid rgb(255, 100, 100);
-  background-color: rgb(255, 100, 100);
-
   transition: background-color 0.2s ease-in, border-color 0.2s ease-in, color 0.2s ease-in;
 }
 
-.delete-product:hover {
+.delete-product-button {
+  border: 1px solid rgb(255, 100, 100);
+  background-color: rgb(255, 100, 100);
+}
+
+.delete-product-button:hover {
   background-color: #fff;
   color: rgb(255, 100, 100);
   border-color: rgb(255, 100, 100);
+}
+
+.shopping-cart-table .checkout-button {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgb(146, 162, 255);
+  background-color: rgb(146, 162, 255);
+}
+
+.shopping-cart-table .checkout-button:hover {
+  background-color: #fff;
+  color: rgb(146, 162, 255);
+  border-color: rgb(146, 162, 255);
 }

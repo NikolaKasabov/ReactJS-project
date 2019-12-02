@@ -20,6 +20,18 @@ function ShoppingCart() {
       .catch((err) => console.log(err));
   }
 
+  function onCheckoutClick() {
+    fetch('http://localhost:5000/checkout', {
+      method: 'GET',
+      credentials: 'include'
+    }).then((response) => response.json())
+      .then((result) => {
+        if (result.message) {
+          setTimeout()
+        }
+      }).catch((err) => console.log(err));
+  }
+
   function fetchProductsAndAddToState() {
     fetch('http://localhost:5000/seeShoppingCart', {
       credentials: 'include',
@@ -48,14 +60,15 @@ function ShoppingCart() {
               return <tr key={index}>
                 <td><img src={imageUrlSmall} width="80px" alt={product.description} /></td>
                 <td>{description}</td>
-                <td>{Number(product.price).toFixed(2)} lv.</td>
-                <td><button className="delete-product" onClick={() => removeProductFromCart(product.id)}>remove</button></td>
+                <td>{Number(product.price).toFixed(2)} lv</td>
+                <td><button className="delete-product-button" onClick={() => removeProductFromCart(product.id)}>remove</button></td>
               </tr>
             })}
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan="4" className="total-sum">TOTAL: {Math.round(totalSum * 100) / 100} lv.</td>
+              <td colSpan="3" className="total-sum">TOTAL: <span>{Math.round(totalSum * 100) / 100}</span> lv</td>
+              <td><button className="checkout-button" onClick={onCheckoutClick}>checkout</button></td>
             </tr>
           </tfoot>
         </table>

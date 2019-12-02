@@ -26,6 +26,8 @@ module.exports = (app) => {
 
   app.get('/seeShoppingCart', sendErrorIfNotLogged, userController.seeShoppingCartGet);
 
+  app.get('/checkout', sendErrorIfNotLogged, userController.checkoutGet);
+
   app.post('/addNewProductToDb', sendErrorIfNotLogged, sendErrorIfNotAdmin,
     upload.single('imageFile'),
     // multerUploads,

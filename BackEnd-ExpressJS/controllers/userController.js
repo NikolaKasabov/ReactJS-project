@@ -24,7 +24,7 @@ module.exports = {
           { $push: { 'shoppingCart': productToAddToCart } }
         ).then(() => res.send({ 'message': 'product successfully added to the shopping cart' }))
           .catch((err) => console.log(err));
-        
+
       }).catch((err) => console.log(err));
   },
 
@@ -34,7 +34,7 @@ module.exports = {
 
     UserModel.findByIdAndUpdate(userId,
       { $pull: { 'shoppingCart': { 'id': productId } } },
-      {'useFindAndModify': false}, // without this option Mongoose throws deprecation warning
+      { 'useFindAndModify': false }, // without this option Mongoose throws deprecation warning
     ).then(() => res.send({ 'message': 'product successfully removed from the shopping cart' }))
       .catch((err) => console.log(err));
   },
@@ -47,4 +47,12 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
+  checkoutGet: (req, res) => {
+    const { userId } = req.userData;
+
+    UserModel.findByIdAndUpdate(userId,
+      { 'shoppingCart': [] })
+      .then(() => res.json({ 'message': 'checkout successful' }))
+      .catch((err) => console.log(err));
+  },
 }
