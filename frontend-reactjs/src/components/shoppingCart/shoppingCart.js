@@ -22,19 +22,19 @@ function ShoppingCart(props) {
       .catch((err) => console.log(err));
   }
 
+  // empty the shopping cart, show message and redirect to the home page
   function onCheckoutClick() {
     fetch('http://localhost:5000/checkout', {
       method: 'GET',
       credentials: 'include'
-    }).then((response) => response.json())
-      .then((result) => {
-        if (result.message) {
-          changeMessage(result.message);
-          setTimeout(() => {
-            props.history.push('/');
-          }, 2500);
-        }
-      }).catch((err) => console.log(err));
+    }).then((response) => {
+      if (response.status === 200) {
+        changeMessage('thanks for shopping from us. checkout successful');
+        setTimeout(() => {
+          props.history.push('/');
+        }, 2500);
+      }
+    }).catch((err) => console.log(err));
   }
 
   function fetchProductsAndAddToState() {
