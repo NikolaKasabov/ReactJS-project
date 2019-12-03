@@ -5,6 +5,7 @@ import './styles.css';
 class ProductsList extends Component {
   constructor(props) {
     super(props);
+    document.title = 'products';
 
     this.state = {
       products: [],
@@ -42,7 +43,7 @@ class ProductsList extends Component {
   }
 
   render() {
-    document.title = 'products';
+    // document.title = 'products';
 
     return (
       <div className="products-list">
