@@ -56,10 +56,10 @@ const LoginForm = (props) => {
   return (
     <form className="login-form" onSubmit={onFormSubmit} >
       {/* <label htmlFor="login-username">Username: </label> */}
-      <input type="text" id="login-username" name="username" placeholder="username" onChange={onInputChange} value={userData.username} />
+      <input type="text" required id="login-username" name="username" placeholder="username" onChange={onInputChange} value={userData.username} />
       {/* <br /> */}
       {/* <label htmlFor="login-password">Password: </label> */}
-      <input type="password" id="login-password" name="password" placeholder="password" onChange={onInputChange} value={userData.password} />
+      <input type="password" required id="login-password" name="password" placeholder="password" onChange={onInputChange} value={userData.password} />
       {/* <br /> */}
       <input type="submit" value="LOGIN" />
       <p>Not registered? <a href="/register">Create an account</a></p>
