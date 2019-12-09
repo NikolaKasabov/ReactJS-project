@@ -8,7 +8,7 @@ Database used is <b>MongoDB</b>, hosted at MongoDB Atlas, and products pictures 
 ---
 This web app has three levels of access: administrator, registered user and guest user.
 
-- The administrator account is automatically created when the Express server is started, if it is not already existing. Only the administrator can add new products to the catalog or delete them.
+- The administrator account is automatically created when the Express server is started, if it is not already existing. Only the administrator can add new products to the catalog or delete existing ones.
 
 - After registration and subsequent successful Login to the system, a registered user can add products to his shopping cart and purchase them.
 
