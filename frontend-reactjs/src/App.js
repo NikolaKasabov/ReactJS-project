@@ -10,11 +10,11 @@ import Home from './components/home/Home';
 import RegisterForm from './components/register/RegisterForm-functional';
 // import LoginForm from './components/login/LoginForm';
 import LoginForm from './components/login/LoginForm-functional';
-import ProductsList from './components/products-list/ProductsList';
+import ProductsList from './components/productsList/ProductsList';
 import Message from './components/message/Message';
 import ShoppingCart from './components/shoppingCart/shoppingCart';
 import SearchResultProductsList from './components/searchResultProductsList/searchResultProductsList';
-import AdminForm from './components/admin-form/AdminForm';
+import AdminForm from './components/adminForm/AdminForm';
 import NotFound from './components/404/404';
 
 

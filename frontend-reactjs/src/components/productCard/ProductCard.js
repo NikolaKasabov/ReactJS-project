@@ -5,7 +5,6 @@ import './styles.css';
 import AddProductToCartButton from '../AddProductToCartButton/AddProductToCartButton';
 import DeleteProductFromDbButton from '../DeleteProductFromDbButton/DeleteProductFromDbButton';
 
-// import deleteProductFromDb from '../../utils/deleteProductFromDb';
 
 function ProductCard(props) {
   const { id, imageUrl, description, price } = props;

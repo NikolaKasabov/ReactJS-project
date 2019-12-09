@@ -12,7 +12,7 @@ function AddProductToCartButton(props) {
       .then((json) => {
         if (json.error) { alert(json.error); }
         else if (json.message) {
-          changeMessage('product successfully added to the cart', true, 2000);
+          changeMessage('product successfully added to the cart', true, 1500);
         }
       }).catch((err) => console.log(err));
   }

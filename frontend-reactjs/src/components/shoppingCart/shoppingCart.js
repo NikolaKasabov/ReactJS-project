@@ -72,7 +72,7 @@ function ShoppingCart(props) {
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan="3" className="total-sum">TOTAL: <span>{Math.round(totalSum * 100) / 100}</span> lv</td>
+              <td colSpan="3" className="total-sum">TOTAL: <span>{(Math.round(totalSum * 100) / 100).toFixed(2)}</span> lv</td>
               <td><button className="checkout-button" onClick={onCheckoutClick}>checkout</button></td>
             </tr>
           </tfoot>
