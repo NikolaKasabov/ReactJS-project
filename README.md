@@ -1,6 +1,5 @@
-# SoftUni-ReactJS-project
 ## This is a project for SoftUni ReactJS course.
----
+
 ### E-comm - our relatively well stocked with reasonably priced products (and non-existent), online store for electronics.
 
 The front end part is created with <b>React</b> and the back end api - with <b>Express</b>.
