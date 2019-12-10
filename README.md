@@ -3,7 +3,7 @@
 ### E-comm - our relatively well stocked with reasonably priced products (and non-existent), online store for electronics.
 
 The front end part is created with <b>React</b> and the back end api - with <b>Express</b>.
-Database used is <b>MongoDB</b>, hosted at <a href="https://www.mongodb.com/cloud/atlas" target="_blank">MongoDB Atlas</a>, and products pictures are uploaded to <a href="https://cloudinary.com/" target="_blank">Cloudinary.com</a>.
+Database used is <b>MongoDB</b>, hosted at <a href="https://www.mongodb.com/cloud/atlas" target="_blank">MongoDB Atlas</a>, and products pictures are uploaded to <a href="https://cloudinary.com/" target="_blank">Cloudinary</a>.
 Authentication is implemented with <a href="https://jwt.io/" target="_blank">JSON Web Tokens</a> and cookies.
 For picture uploads are used <a href="https://www.npmjs.com/package/multer" target="_blank">multer</a> and <a href="https://www.npmjs.com/package/cloudinary" target="_blank">Cloudinary's API</a>.
 
