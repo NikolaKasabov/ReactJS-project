@@ -8,7 +8,7 @@ class ProductsList extends Component {
     document.title = 'products';
 
     this.state = {
-      products: [],
+      products: null,
     }
   }
 
@@ -43,7 +43,9 @@ class ProductsList extends Component {
   }
 
   render() {
-    // document.title = 'products';
+    if (this.state.products === null) {
+      return <h1>loading...</h1>
+    }
 
     return (
       <div className="products-list">
