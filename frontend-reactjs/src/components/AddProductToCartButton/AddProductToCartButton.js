@@ -10,13 +10,11 @@ function AddProductToCartButton(props) {
       credentials: 'include',
     }).then((result) => result.json())
       .then((json) => {
-        if (json.error) { alert(json.error); }
-        else if (json.message) {
-          changeMessage('product successfully added to the cart', true, 1500);
-        }
+        if (json.error) { console.log(json.error); }
+        else if (json.message) { changeMessage('product successfully added to the cart', true, 1500); }
       }).catch((err) => console.log(err));
   }
-  
+
   return (
     <button onClick={() => addProductToCart(props.id)}>add to cart</button>
   );

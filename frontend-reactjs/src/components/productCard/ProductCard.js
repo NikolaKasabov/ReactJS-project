@@ -10,9 +10,9 @@ function ProductCard(props) {
   const { id, imageUrl, description, price } = props;
   const imageUrlSmall = imageUrl.replace('/dq2snomti/image/upload/', '/dq2snomti/image/upload/c_scale,w_200/');  // only when images are hosted at Cloudinary.com
   const isLogged = Cookies.get('jwt') ? true : false;
-  const isAdmin = Cookies.get('username') === 'admin' ? true : false;
+  const isAdmin = Cookies.get('username') === 'admin';
   // const deleteProductFromDbButton = <button onClick={() => deleteProductFromDb(id)}>delete product</button>
-
+  
   return (
     <div className="product-card">
       <a href={imageUrl} target="_blank" rel="noopener noreferrer"><img src={imageUrlSmall} width="200px" alt="" /></a>
