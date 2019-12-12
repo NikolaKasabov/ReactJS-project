@@ -9,7 +9,7 @@ function ShoppingCart(props) {
 
   document.title = 'shopping cart';
 
-  // initial products fetch, similar to componentDidMount()
+  // initial products fetch, similar to componentDidMount(), because of the [] as second argument
   useEffect(() => {
     fetchProductsAndAddToState();
   }, []);

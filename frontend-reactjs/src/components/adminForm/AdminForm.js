@@ -9,7 +9,7 @@ function AdminForm() {
     // 'product-image-url': '',
     'product-price': '',
     'product-category': 'choose',
-    'product-image-file': null, //////////////
+    'product-image-file': null,
   });
 
   document.title = 'add product';
@@ -19,7 +19,7 @@ function AdminForm() {
     let inputValue = ev.target.value;
 
     // for file upload field:
-    if (inputName === 'product-image-file') inputValue = ev.target.files[0]; ////////////////
+    if (inputName === 'product-image-file') inputValue = ev.target.files[0];
 
     setProductData({
       ...productData,
@@ -31,10 +31,10 @@ function AdminForm() {
     ev.preventDefault();
 
     // input validations
-    if (!productData["product-description"]) { return changeMessage('must add description'); }
-    else if (!productData["product-image-file"]) { return changeMessage('must select image file'); }
-    else if (!productData["product-price"]) { return changeMessage('must add price'); }
-    else if (productData["product-category"] === 'choose') { return changeMessage('must choose category'); }
+    if (!productData['product-description']) { return changeMessage('must add description'); }
+    else if (!productData['product-image-file']) { return changeMessage('must select image file'); }
+    else if (!productData['product-price']) { return changeMessage('must add price'); }
+    else if (productData['product-category'] === 'choose') { return changeMessage('must choose category'); }
     else { changeMessage('adding product...'); }
 
 
