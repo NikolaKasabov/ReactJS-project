@@ -49,7 +49,7 @@ const RegisterForm = (props) => {
         changeMessage('registration successful. redirecting to login page...');
         
         // redirect to login page after some delay
-        setTimeout(() => props.history.push('/login'), 2500);
+        setTimeout(() => props.history.push('/login'), 1800);
       } else {
         // if there is an error, show the message
         result.json().then((json) => changeMessage(json.error));
