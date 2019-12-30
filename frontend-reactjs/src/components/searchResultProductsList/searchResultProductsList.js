@@ -13,7 +13,6 @@ function SearchResultProductsList() {
     <div>
       {searchResult.length > 0 ? (
         <>
-          {/* <h2 className="search-result-title">search results:</h2> */}
           <div className="products-list">
             {searchResult.map((product, index) => {
               return <ProductCard

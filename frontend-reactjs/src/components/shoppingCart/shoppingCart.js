@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import fetchData from '../../utils/fetchData';
 import './styles.css';
 
 function ShoppingCart(props) {
@@ -15,48 +16,91 @@ function ShoppingCart(props) {
   }, []);
 
   function removeProductFromCart(productId) {
-    fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
+    // fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
+    //   method: 'POST',
+    //   credentials: 'include',
+    // }).then(() => fetchProductsAndAddToState())
+    //   .catch((err) => console.log(err));
+
+    fetchData({
+      url: `http://localhost:5000/removeProductFromCart/${productId}`,
       method: 'POST',
-      credentials: 'include',
+      withCredentials: true
     }).then(() => fetchProductsAndAddToState())
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // if express server DID NOT respond
+        if (!err.response) {
+          changeMessage(err.message);
+        }
+
+        // if exress server DID respond
+        if (err.response) {
+          changeMessage(err.response.data.error);
+        }
+      });
   }
 
   // empty the shopping cart, show message and redirect to the home page
   function onCheckoutClick() {
-    fetch('http://localhost:5000/checkout', {
-      method: 'GET',
-      credentials: 'include'
-    }).then((response) => {
-      if (response.status === 200) {
-        changeMessage('thanks for shopping from us. checkout successful');
-        setTimeout(() => {
-          props.history.push('/');
-        }, 2500);
+    // fetch('http://localhost:5000/checkout', {
+    //   method: 'GET',
+    //   credentials: 'include'
+    // }).then((response) => {
+    //   if (response.status === 200) {
+    //     changeMessage('thanks for shopping from us. checkout successful');
+    //     setTimeout(() => {
+    //       props.history.push('/');
+    //     }, 2500);
+    //   }
+    // }).catch((err) => console.log(err));
+
+    fetchData({
+      url: 'http://localhost:5000/checkout',
+      withCredentials: true
+    }).then((result) => {
+      changeMessage('thanks for shopping from us. checkout successful');
+      setTimeout(() => { props.history.push('/') }, 2500);
+    }).catch((err) => {
+      // if express server DID NOT respond
+      if (!err.response) {
+        changeMessage(err.message);
       }
-    }).catch((err) => console.log(err));
+
+      // if exress server DID respond
+      if (err.response) {
+        changeMessage(err.response.data.error);
+      }
+    });
   }
 
   function fetchProductsAndAddToState() {
-    fetch('http://localhost:5000/seeShoppingCart', {
-      credentials: 'include',
-    }).then((result) => result.json())
-      .then((productsArr) => setProducts(productsArr))
-      .catch((err) => console.log(err));
+    // fetch('http://localhost:5000/seeShoppingCart', {
+    //   credentials: 'include',
+    // }).then((result) => result.json())
+    //   .then((productsArr) => setProducts(productsArr))
+    //   .catch((err) => console.log(err));
+
+    fetchData({
+      url: 'http://localhost:5000/seeShoppingCart',
+      withCredentials: true
+    }).then((result) => setProducts(result.data))
+      .catch((err) => {
+        // if express server DID NOT respond
+        if (!err.response) {
+          changeMessage(err.message);
+        }
+
+        // if exress server DID respond
+        if (err.response) {
+          changeMessage(err.response.data.error);
+        }
+      });
   }
 
   return (
     <>
       {products.length > 0 ? (
         <table className="shopping-cart-table">
-          {/* <thead>
-            <tr>
-              <th>Image</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Remove from cart?</th>
-            </tr>
-          </thead> */}
           <tbody>
             {products.map((product, index) => {
               const imageUrlSmall = product.imageUrl.replace('/dq2snomti/image/upload/', '/dq2snomti/image/upload/c_scale,w_100/');  // only when images are hosted at Cloudinary.com

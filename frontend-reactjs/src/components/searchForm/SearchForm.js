@@ -1,75 +1,57 @@
-// import React, { useContext, useState } from 'react';
 import React, { useContext } from 'react';
 import { SearchResultContext } from '../../contexts/SearchResultContext';
+import { MessagesContext } from '../../contexts/MessagesContext';
 import './styles.css';
+import fetchData from '../../utils/fetchData';
 
 function SearchForm(props) {
-  // const [searchString, setSearchString] = useState('');
   const { setSearchResult } = useContext(SearchResultContext);
+  const { changeMessage } = useContext(MessagesContext);
 
   // on user typing
   function onInputChange(ev) {
-    // setSearchString(ev.target.value);  // It's asynchronous. Used when Submit button is present.
 
     // if search field is empty return no products
     if (ev.target.value === '') {
-      setSearchResult([]);
-      return;
+      return setSearchResult([]);
     };
-
-    // fetch searched products and send them to SearchResultContext
-    fetch('http://localhost:5000/search', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        // 'searchString': searchString,
-        'searchString': ev.target.value,
-      }),
-    }).then((result) => result.json())
-      .then((products) => setSearchResult(products))
-      .catch((err) => console.log(err));
 
     // redirect to '/search', if not there already
     if (props.location.pathname !== '/search') props.history.push('/search');
+
+    // old code: used before fetchData utility was implemented
+    // fetch searched products and send them to SearchResultContext
+    // fetch('http://localhost:5000/search', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     'searchString': ev.target.value,
+    //   }),
+    // }).then((result) => result.json())
+    //   .then((products) => setSearchResult(products))
+    //   .catch((err) => console.log(err));
+
+    fetchData({
+      url: 'http://localhost:5000/search',
+      method: 'POST',
+      data: {
+        'searchString': ev.target.value
+      }
+    }).then((result) => setSearchResult(result.data))
+      .catch((err) => changeMessage(err.message, true, 3000));
   }
 
-  // // on 'Search' button click
-  // function onSubmit(ev) {
-  //   ev.preventDefault();
-
-  //   // if search field is empty don't do anything
-  //   if (searchString.length === 0) {
-  //     return;
-  //   }
-
-  //   // fetch searched products and add them to SearchResultContext
-  //   fetch('http://localhost:5000/search', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       'searchString': searchString,
-  //     }),
-  //   }).then((result) => result.json())
-  //     .then((products) => setSearchResult(products))
-  //     .catch((err) => console.log(err));
-
-  //   // redirect to '/search' path
-  //   props.history.push('/search');
-  // }
 
   return (
-      <input className="search-input"
-        type='text'
-        placeholder='search products...'
-        onChange={onInputChange}
-        onBlur={(ev) => ev.target.value = ''}
-      /> 
+    <input className="search-input"
+      type='text'
+      placeholder='search products...'
+      onChange={onInputChange}
+      onBlur={(ev) => ev.target.value = ''}
+    />
   )
 }
 

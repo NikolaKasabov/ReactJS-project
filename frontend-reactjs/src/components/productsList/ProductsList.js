@@ -17,7 +17,6 @@ class ProductsList extends Component {
 
   componentDidMount() {
     const { category } = this.props.match.params;
-    // this.fetchProductsAndAddToState(category);
 
     this.setState({ isFetching: true, err: null });
     fetchData(`http://localhost:5000/products/${category}`)
@@ -31,9 +30,8 @@ class ProductsList extends Component {
     const prevCategory = prevProps.match.params.category;
 
     if (category !== prevCategory) {
-      // this.fetchProductsAndAddToState(category);
-
       this.setState({ isFetching: true, err: null });
+      
       fetchData(`http://localhost:5000/products/${category}`)
         .then((result) => this.setState({ products: result.data, isFetching: false }))
         .catch((err) => this.setState({ isFetching: false, err }));
