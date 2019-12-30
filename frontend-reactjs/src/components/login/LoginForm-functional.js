@@ -57,13 +57,12 @@ const LoginForm = (props) => {
     fetchData({
       url: 'http://localhost:5000/login',
       method: 'POST',
-      withCredentials: true,
+      withCredentials: true,  // to save the cookies to the browser
       data: {
         username: userData.username,
         password: userData.password,
       }
     }).then((response) => {
-      // console.log(response);
       changeMessage('login successful');
       // redirect to home page
       props.history.push('/');

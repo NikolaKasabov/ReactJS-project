@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
 import './styles.css';
+import fetchData from '../../utils/fetchData';
 
 const RegisterForm = (props) => {
   const { changeMessage } = useContext(MessagesContext);
@@ -36,25 +37,51 @@ const RegisterForm = (props) => {
     ev.preventDefault();
     changeMessage('Loading...');
 
-    fetch('http://localhost:5000/register', {
+    // old code: used before fetchData utility was implemented
+    // fetch('http://localhost:5000/register', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     username: userData.username,
+    //     password: userData.password,
+    //     repeatPassword: userData.repeatPassword,
+    //   }),
+    // }).then((result) => {
+    //   if (result.status === 200) {
+    //     changeMessage('registration successful. redirecting to login page...');
+
+    //     // redirect to login page after some delay
+    //     setTimeout(() => props.history.push('/login'), 1800);
+    //   } else {
+    //     // if there is an error, show the message
+    //     result.json().then((json) => changeMessage(json.error));
+    //   }
+    // }).catch((err) => changeMessage('Sorry. Something went wrong :('));
+
+    fetchData({
+      url: 'http://localhost:5000/register',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+      data: {
         username: userData.username,
         password: userData.password,
         repeatPassword: userData.repeatPassword,
-      }),
-    }).then((result) => {
-      if (result.status === 200) {
-        changeMessage('registration successful. redirecting to login page...');
-        
-        // redirect to login page after some delay
-        setTimeout(() => props.history.push('/login'), 1800);
-      } else {
-        // if there is an error, show the message
-        result.json().then((json) => changeMessage(json.error));
       }
-    }).catch((err) => changeMessage('Sorry. Something went wrong :('));
+    }).then((result) => {
+      changeMessage('registration successful. redirecting to login page...');
+      // redirect to login page after some delay
+      setTimeout(() => props.history.push('/login'), 1800);
+    })
+      .catch((err) => {
+        // if express server DID NOT response
+        if (!err.response) {
+          changeMessage(err.message);
+        }
+
+        // if express server DID response
+        if (err.response) {
+          changeMessage(err.response.data.error);
+        }
+      });
   }
 
 

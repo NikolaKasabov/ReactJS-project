@@ -64,17 +64,12 @@ function SearchForm(props) {
   // }
 
   return (
-    // <form onSubmit={onSubmit}>
-    <>
       <input className="search-input"
         type='text'
         placeholder='search products...'
         onChange={onInputChange}
         onBlur={(ev) => ev.target.value = ''}
-      />
-      {/* <button type='submit'>Search</button> */}
-    </ >
-    // </form>
+      /> 
   )
 }
 
