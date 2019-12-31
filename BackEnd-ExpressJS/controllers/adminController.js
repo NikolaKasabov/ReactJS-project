@@ -30,7 +30,7 @@ module.exports = {
         category
       }).then(() => res.send({ 'message': 'product added successfully' }))
         .catch((err) => res.send({ 'error': err.toString() }));
-      
+
     }).catch((err) => console.log(err));
   },
 
@@ -39,7 +39,7 @@ module.exports = {
     const { username } = req.userData;
 
     if (username !== 'admin') {
-      res.send({ 'error': 'only the Administrator can delete products' });
+      res.status(401).send({ 'error': 'only the administrator can delete products' });
     } else {
       ProductModel.findByIdAndDelete(productId)
         .then(() => res.send({ 'message': 'product successfully deleted' }))
