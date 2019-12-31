@@ -10,7 +10,7 @@ module.exports = {
     // check if selected file is an image. send error if it's not an image.
     const fileType = req.file.mimetype.split('/')[0];
     if (fileType !== 'image') {
-      res.send({ 'error': 'selected file is not an image' });
+      res.status(415).send({ 'error': 'selected file is not an image' });
       return;
     }
 

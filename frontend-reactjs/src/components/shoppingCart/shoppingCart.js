@@ -11,17 +11,9 @@ function ShoppingCart(props) {
   document.title = 'shopping cart';
 
   // initial products fetch, similar to componentDidMount(), because of the [] as second argument
-  useEffect(() => {
-    fetchProductsAndAddToState();
-  }, []);
+  useEffect(() => fetchProductsAndAddToState(), []);
 
   function removeProductFromCart(productId) {
-    // fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
-    //   method: 'POST',
-    //   credentials: 'include',
-    // }).then(() => fetchProductsAndAddToState())
-    //   .catch((err) => console.log(err));
-
     fetchData({
       url: `http://localhost:5000/removeProductFromCart/${productId}`,
       method: 'POST',
@@ -31,10 +23,8 @@ function ShoppingCart(props) {
         // if express server DID NOT respond
         if (!err.response) {
           changeMessage(err.message);
-        }
-
-        // if exress server DID respond
-        if (err.response) {
+        } else {
+          // if exress server DID respond
           changeMessage(err.response.data.error);
         }
       });
@@ -42,56 +32,34 @@ function ShoppingCart(props) {
 
   // empty the shopping cart, show message and redirect to the home page
   function onCheckoutClick() {
-    // fetch('http://localhost:5000/checkout', {
-    //   method: 'GET',
-    //   credentials: 'include'
-    // }).then((response) => {
-    //   if (response.status === 200) {
-    //     changeMessage('thanks for shopping from us. checkout successful');
-    //     setTimeout(() => {
-    //       props.history.push('/');
-    //     }, 2500);
-    //   }
-    // }).catch((err) => console.log(err));
-
     fetchData({
       url: 'http://localhost:5000/checkout',
       withCredentials: true
     }).then((result) => {
       changeMessage('thanks for shopping from us. checkout successful');
-      setTimeout(() => { props.history.push('/') }, 2500);
+      setTimeout(() => props.history.push('/'), 2500);
     }).catch((err) => {
       // if express server DID NOT respond
       if (!err.response) {
         changeMessage(err.message);
-      }
-
-      // if exress server DID respond
-      if (err.response) {
+      } else {
+        // if exress server DID respond
         changeMessage(err.response.data.error);
       }
     });
   }
 
   function fetchProductsAndAddToState() {
-    // fetch('http://localhost:5000/seeShoppingCart', {
-    //   credentials: 'include',
-    // }).then((result) => result.json())
-    //   .then((productsArr) => setProducts(productsArr))
-    //   .catch((err) => console.log(err));
-
     fetchData({
-      url: 'http://localhost:5000/seeShoppingCart',
+      url: 'http://localhost:5000/shoppingCart',
       withCredentials: true
     }).then((result) => setProducts(result.data))
       .catch((err) => {
         // if express server DID NOT respond
         if (!err.response) {
           changeMessage(err.message);
-        }
-
-        // if exress server DID respond
-        if (err.response) {
+        } else {
+          // if exress server DID respond
           changeMessage(err.response.data.error);
         }
       });

@@ -1,18 +1,25 @@
 import React, { useContext } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import fetchData from '../../utils/fetchData';
 
 function AddProductToCartButton(props) {
   const { changeMessage } = useContext(MessagesContext);
 
   function addProductToCart(productId) {
-    fetch(`http://localhost:5000/addProductToCart/${productId}`, {
+    fetchData({
+      url: `http://localhost:5000/addProductToCart/${productId}`,
       method: 'POST',
-      credentials: 'include',
-    }).then((result) => result.json())
-      .then((json) => {
-        if (json.error) { console.log(json.error); }
-        else if (json.message) { changeMessage('product successfully added to the cart', true, 1500); }
-      }).catch((err) => console.log(err));
+      withCredentials: true
+    }).then((result) => changeMessage(result.data.message, true, 1500))
+      .catch((err) => {
+        // if express server DID NOT respond
+        if (!err.response) {
+          changeMessage(err.message, true, 2000);
+        } else {
+          // if express server DID respond
+          changeMessage(err.response.data.error);
+        }
+      });
   }
 
   return (
