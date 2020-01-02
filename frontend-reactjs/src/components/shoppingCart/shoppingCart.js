@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
 import fetchData from '../../utils/fetchData';
+import errorHandling from '../../utils/errorHandling';
 import './styles.css';
 
 function ShoppingCart(props) {
@@ -19,15 +20,7 @@ function ShoppingCart(props) {
       method: 'POST',
       withCredentials: true
     }).then(() => fetchProductsAndAddToState())
-      .catch((err) => {
-        // if express server DID NOT respond
-        if (!err.response) {
-          changeMessage(err.message);
-        } else {
-          // if exress server DID respond
-          changeMessage(err.response.data.error);
-        }
-      });
+      .catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
   // empty the shopping cart, show message and redirect to the home page
@@ -37,16 +30,9 @@ function ShoppingCart(props) {
       withCredentials: true
     }).then((result) => {
       changeMessage('thanks for shopping from us. checkout successful');
+      // redirect to home page after some delay
       setTimeout(() => props.history.push('/'), 2500);
-    }).catch((err) => {
-      // if express server DID NOT respond
-      if (!err.response) {
-        changeMessage(err.message);
-      } else {
-        // if exress server DID respond
-        changeMessage(err.response.data.error);
-      }
-    });
+    }).catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
   function fetchProductsAndAddToState() {
@@ -54,15 +40,7 @@ function ShoppingCart(props) {
       url: 'http://localhost:5000/shoppingCart',
       withCredentials: true
     }).then((result) => setProducts(result.data))
-      .catch((err) => {
-        // if express server DID NOT respond
-        if (!err.response) {
-          changeMessage(err.message);
-        } else {
-          // if exress server DID respond
-          changeMessage(err.response.data.error);
-        }
-      });
+      .catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
   return (

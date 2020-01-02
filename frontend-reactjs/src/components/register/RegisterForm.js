@@ -72,13 +72,11 @@ const RegisterForm = (props) => {
       setTimeout(() => props.history.push('/login'), 1800);
     })
       .catch((err) => {
-        // if express server DID NOT response
+        // if express server DID NOT respond
         if (!err.response) {
-          changeMessage(err.message);
-        }
-
-        // if express server DID response
-        if (err.response) {
+          changeMessage(err.message, true, 2000);
+        } else {
+          // if express server DID respond
           changeMessage(err.response.data.error);
         }
       });

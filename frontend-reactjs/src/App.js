@@ -2,14 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
-// import Cookies from 'js-cookie';
-
 import Navigation from './components/navigation/Navigation';
 import Home from './components/home/Home';
-// import RegisterForm from './components/register/RegisterForm';
-import RegisterForm from './components/register/RegisterForm-functional';
-// import LoginForm from './components/login/LoginForm';
-import LoginForm from './components/login/LoginForm-functional';
+import RegisterForm from './components/register/RegisterForm';
+import LoginForm from './components/login/LoginForm';
 import ProductsList from './components/productsList/ProductsList';
 import Message from './components/message/Message';
 import ShoppingCart from './components/shoppingCart/shoppingCart';
@@ -38,8 +34,6 @@ function App(props) {
 
         <Switch>
           <Route exact path='/' component={Home} />
-          {/* using 'render' if must pass props to the component */}
-          {/* <Route exact path='/login' render={(props) => <LoginForm {...props} addUsernameToAppState={this.addLoggedUsernameToState} />} /> */}
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={RegisterForm} />
           <Route path='/products/:category' component={ProductsList} />

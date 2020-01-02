@@ -3,6 +3,8 @@ import { MessagesContext } from '../../contexts/MessagesContext';
 import fetchData from '../../utils/fetchData';
 import './styles.css';
 
+import errorHandling from '../../utils/errorHandling';
+
 const LoginForm = (props) => {
   const { changeMessage } = useContext(MessagesContext);
   const [userData, setUserData] = useState({
@@ -28,32 +30,6 @@ const LoginForm = (props) => {
     ev.preventDefault();
     changeMessage('loading...');
 
-    // old code: used before fetchData utility was implemented
-    // // send POST request to the express server with the login data, and get a cookie with jwt
-    // fetch('http://localhost:5000/login', {
-    //   method: 'POST',
-    //   // withCredentials: true,   // to save the cookies to the browser
-    //   credentials: 'include',  // to save the cookies to the browser
-    //   headers: {
-    //     // 'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: userData.username,
-    //     password: userData.password,
-    //   }),
-    // }).then((result) => {
-    //   if (result.status === 200) {
-    //     changeMessage('Login successful');
-    //     // redirect to home page
-    //     props.history.push('/');
-    //   } else {
-    //     // if there is an error, show the message
-    //     result.json().then((json) => changeMessage(json.error));
-    //   }
-    // }).catch(() => changeMessage('Sorry. Something went wrong :('));
-
-
     fetchData({
       url: 'http://localhost:5000/login',
       method: 'POST',
@@ -66,17 +42,7 @@ const LoginForm = (props) => {
       changeMessage('login successful');
       // redirect to home page
       props.history.push('/');
-    }).catch((err) => {
-      // if express server DID NOT respond
-      if (!err.response) {
-        return changeMessage(err.message);
-      }
-
-      // if express server DID respond
-      if (err.response) {
-        return changeMessage(err.response.data.error);
-      }
-    });
+    }).catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
 
