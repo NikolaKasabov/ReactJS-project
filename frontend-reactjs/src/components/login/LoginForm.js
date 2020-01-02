@@ -23,7 +23,7 @@ const LoginForm = (props) => {
       ...userData,
       [inputName]: inputValue,
     });
-  }
+  };
 
   // login form submit
   const onFormSubmit = (ev) => {
@@ -37,13 +37,13 @@ const LoginForm = (props) => {
       data: {
         username: userData.username,
         password: userData.password,
-      }
-    }).then((response) => {
+      },
+    }).then(() => {
       changeMessage('login successful');
       // redirect to home page
       props.history.push('/');
     }).catch((err) => errorHandling(err, changeMessage, true, 2000));
-  }
+  };
 
 
   return (
@@ -53,7 +53,7 @@ const LoginForm = (props) => {
       <input type="submit" value="LOGIN" />
       <p>Not registered? <a href="/register">Create an account</a></p>
     </form>
-  )
-}
+  );
+};
 
 export default LoginForm;

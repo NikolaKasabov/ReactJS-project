@@ -31,7 +31,7 @@ class ProductsList extends Component {
 
     if (category !== prevCategory) {
       this.setState({ isFetching: true, err: null });
-      
+
       fetchData(`http://localhost:5000/products/${category}`)
         .then((result) => this.setState({ products: result.data, isFetching: false }))
         .catch((err) => this.setState({ isFetching: false, err }));
@@ -56,26 +56,26 @@ class ProductsList extends Component {
 
   render() {
     if (this.state.isFetching) {
-      return <h1>loading...</h1>
+      return <h1>loading...</h1>;
     }
 
     if (this.state.err) {
-      return <h1>{this.state.err.message}</h1>
+      return <h1>{this.state.err.message}</h1>;
     }
 
     return (
       <div className="products-list">
-        {this.state.products.map((product, index) => {
-          return (<ProductCard
+        {this.state.products.map((product, index) => (
+          <ProductCard
             key={index}
             id={product._id}
             imageUrl={product.imageUrl}
             description={product.description}
             price={product.price}
-          />);
-        })}
+          />
+        ))}
       </div>
-    )
+    );
   }
 }
 

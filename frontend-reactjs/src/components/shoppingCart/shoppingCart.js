@@ -18,7 +18,7 @@ function ShoppingCart(props) {
     fetchData({
       url: `http://localhost:5000/removeProductFromCart/${productId}`,
       method: 'POST',
-      withCredentials: true
+      withCredentials: true,
     }).then(() => fetchProductsAndAddToState())
       .catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
@@ -27,8 +27,8 @@ function ShoppingCart(props) {
   function onCheckoutClick() {
     fetchData({
       url: 'http://localhost:5000/checkout',
-      withCredentials: true
-    }).then((result) => {
+      withCredentials: true,
+    }).then(() => {
       changeMessage('thanks for shopping from us. checkout successful');
       // redirect to home page after some delay
       setTimeout(() => props.history.push('/'), 2500);
@@ -38,7 +38,7 @@ function ShoppingCart(props) {
   function fetchProductsAndAddToState() {
     fetchData({
       url: 'http://localhost:5000/shoppingCart',
-      withCredentials: true
+      withCredentials: true,
     }).then((result) => setProducts(result.data))
       .catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
@@ -52,12 +52,14 @@ function ShoppingCart(props) {
               const imageUrlSmall = product.imageUrl.replace('/dq2snomti/image/upload/', '/dq2snomti/image/upload/c_scale,w_100/');  // only when images are hosted at Cloudinary.com
               const description = product.description.slice(0, 60) + (product.description.length > 60 ? '...' : '');
 
-              return <tr key={index}>
-                <td><img src={imageUrlSmall} width="80px" alt={product.description} /></td>
-                <td>{description}</td>
-                <td>{Number(product.price).toFixed(2)} lv</td>
-                <td><button className="delete-product-button" onClick={() => removeProductFromCart(product.id)}>remove</button></td>
-              </tr>
+              return (
+                <tr key={index}>
+                  <td><img src={imageUrlSmall} width="80px" alt={product.description} /></td>
+                  <td>{description}</td>
+                  <td>{Number(product.price).toFixed(2)} lv</td>
+                  <td><button className="delete-product-button" onClick={() => removeProductFromCart(product.id)}>remove</button></td>
+                </tr>
+              );
             })}
           </tbody>
           <tfoot>
