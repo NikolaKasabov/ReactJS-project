@@ -2,8 +2,8 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import './styles.css';
 
-import AddProductToCartButton from '../AddProductToCartButton/AddProductToCartButton';
-import DeleteProductFromDbButton from '../DeleteProductFromDbButton/DeleteProductFromDbButton';
+import AddProductToCartButton from '../addProductToCartButton/AddProductToCartButton';
+import DeleteProductFromDbButton from '../deleteProductFromDbButton/DeleteProductFromDbButton';
 
 
 function ProductCard(props) {
