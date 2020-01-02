@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MessagesContext } from '../../contexts/MessagesContext';
+import fetchData from '../../utils/fetchData';
+import errorHandling from '../../utils/errorHandling';
 import './styles.css';
 
 function ShoppingCart(props) {
@@ -10,53 +12,41 @@ function ShoppingCart(props) {
   document.title = 'shopping cart';
 
   // initial products fetch, similar to componentDidMount(), because of the [] as second argument
-  useEffect(() => {
-    fetchProductsAndAddToState();
-  }, []);
+  useEffect(() => fetchProductsAndAddToState(), []);
 
   function removeProductFromCart(productId) {
-    fetch(`http://localhost:5000/removeProductFromCart/${productId}`, {
+    fetchData({
+      url: `http://localhost:5000/removeProductFromCart/${productId}`,
       method: 'POST',
-      credentials: 'include',
+      withCredentials: true
     }).then(() => fetchProductsAndAddToState())
-      .catch((err) => console.log(err));
+      .catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
   // empty the shopping cart, show message and redirect to the home page
   function onCheckoutClick() {
-    fetch('http://localhost:5000/checkout', {
-      method: 'GET',
-      credentials: 'include'
-    }).then((response) => {
-      if (response.status === 200) {
-        changeMessage('thanks for shopping from us. checkout successful');
-        setTimeout(() => {
-          props.history.push('/');
-        }, 2500);
-      }
-    }).catch((err) => console.log(err));
+    fetchData({
+      url: 'http://localhost:5000/checkout',
+      withCredentials: true
+    }).then((result) => {
+      changeMessage('thanks for shopping from us. checkout successful');
+      // redirect to home page after some delay
+      setTimeout(() => props.history.push('/'), 2500);
+    }).catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
   function fetchProductsAndAddToState() {
-    fetch('http://localhost:5000/seeShoppingCart', {
-      credentials: 'include',
-    }).then((result) => result.json())
-      .then((productsArr) => setProducts(productsArr))
-      .catch((err) => console.log(err));
+    fetchData({
+      url: 'http://localhost:5000/shoppingCart',
+      withCredentials: true
+    }).then((result) => setProducts(result.data))
+      .catch((err) => errorHandling(err, changeMessage, true, 2000));
   }
 
   return (
     <>
       {products.length > 0 ? (
         <table className="shopping-cart-table">
-          {/* <thead>
-            <tr>
-              <th>Image</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Remove from cart?</th>
-            </tr>
-          </thead> */}
           <tbody>
             {products.map((product, index) => {
               const imageUrlSmall = product.imageUrl.replace('/dq2snomti/image/upload/', '/dq2snomti/image/upload/c_scale,w_100/');  // only when images are hosted at Cloudinary.com

@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   // if there is no jwt in cookies or is invalid, send error status code and message
   jwt.verify(token, jwtSecret, (err, data) => {
     if (err) {
-      res.status(401).send({'error': 'User must be logged in to do that.'});
+      res.status(401).send({'error': 'user must be logged in to do that'});
     } else {
       next();
     }

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-// import App from './App-functional';
 import * as serviceWorker from './serviceWorker';
 
 import MessagesContextProvider from './contexts/MessagesContext';

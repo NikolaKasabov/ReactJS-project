@@ -24,7 +24,7 @@ module.exports = (app) => {
 
   app.post('/removeProductFromCart/:productId', sendErrorIfNotLogged, userController.removeProductFromCartPost);
 
-  app.get('/seeShoppingCart', sendErrorIfNotLogged, userController.seeShoppingCartGet);
+  app.get('/shoppingCart', sendErrorIfNotLogged, userController.shoppingCartGet);
 
   app.get('/checkout', sendErrorIfNotLogged, userController.checkoutGet);
 

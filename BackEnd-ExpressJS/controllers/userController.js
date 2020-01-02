@@ -22,7 +22,7 @@ module.exports = {
 
         UserModel.findByIdAndUpdate(userId,
           { $push: { 'shoppingCart': productToAddToCart } }
-        ).then(() => res.send({ 'message': 'product successfully added to the shopping cart' }))
+        ).then(() => res.send({ 'message': 'product successfully added to the cart' }))
           .catch((err) => console.log(err));
 
       }).catch((err) => console.log(err));
@@ -39,7 +39,7 @@ module.exports = {
       .catch((err) => console.log(err));
   },
 
-  seeShoppingCartGet: (req, res) => {
+  shoppingCartGet: (req, res) => {
     const { userId } = req.userData;
 
     UserModel.findById(userId)

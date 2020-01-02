@@ -6,6 +6,7 @@ module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (token) {
+    // userData consists of userId and username
     const userData = jwt.verify(token, jwtSecret);
     req.userData = userData;
   }
