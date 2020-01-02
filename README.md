@@ -3,9 +3,10 @@
 ### E-comm - our relatively well stocked with reasonably priced products (and non-existent), online store for electronics.
 
 The front end part is created with <b>React</b> and the back end api - with <b>Express</b>.
-Database used is <b>MongoDB</b>, hosted at <a href="https://www.mongodb.com/cloud/atlas" target="_blank">MongoDB Atlas</a>, and products pictures are uploaded to <a href="https://cloudinary.com/" target="_blank">Cloudinary</a>.
-Authentication is implemented with <a href="https://jwt.io/" target="_blank">JSON Web Tokens</a> and cookies.
-For picture uploads are used <a href="https://www.npmjs.com/package/multer" target="_blank">multer</a> and <a href="https://www.npmjs.com/package/cloudinary" target="_blank">Cloudinary's API</a>.
+Database used is <b>MongoDB</b>, hosted at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas), and product images are uploaded to [Cloudinary](https://cloudinary.com).
+For data fetching is used [axios](https://www.npmjs.com/package/axios).
+Authentication is implemented with [JSON Web Tokens](https://jwt.io) and cookies.
+For image uploads are used [multer](https://www.npmjs.com/package/multer) and [Cloudinary's API](https://www.npmjs.com/package/cloudinary).
 
 ---
 This web app has three levels of access: administrator, registered user and guest user.
