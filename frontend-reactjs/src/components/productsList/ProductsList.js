@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductCard from '../productCard/ProductCard';
-import PageButtons from '../pageButtons/PageButtons';
+import PageNumberButtons from '../pageNumberButtons/PageNumberButtons';
 import fetchData from '../../utils/fetchData';
 import uuid from 'uuid/v1';
 import './styles.css';
@@ -14,6 +14,7 @@ class ProductsList extends Component {
       products: [],
       numberOfPages: null,
       currentPageNumber: 1,
+      productsPerPage: 1,
       isFetching: false,
       err: null,
     };
@@ -25,7 +26,7 @@ class ProductsList extends Component {
     this.fetchProductsAndAddToState(category);
   }
 
-  // update state on prop changes
+  // update state on prop changes(on product category change)
   componentDidUpdate(prevProps) {
     const { category } = this.props.match.params;
     const prevCategory = prevProps.match.params.category;
@@ -47,7 +48,7 @@ class ProductsList extends Component {
   // on page number click
   onPageChange = (ev) => {
     const { category } = this.props.match.params;
-    const pageNumber = ev.target.innerHTML;
+    const pageNumber = Number(ev.target.innerHTML);
 
     this.setState({ currentPageNumber: pageNumber });
     this.fetchProductsAndAddToState(category, pageNumber);
@@ -55,12 +56,11 @@ class ProductsList extends Component {
 
   // get how many pages there are for product category
   getNumberOfPagesAndAddToState = (category) => {
-    const productsPerPage = 8;
 
     fetchData(`http://localhost:5000/numberOfProducts/${category}`)
       .then((result) => {
         const numberOfProducts = Number(result.data.numberOfProducts);
-        const numberOfPages = Math.ceil(numberOfProducts / productsPerPage);
+        const numberOfPages = Math.ceil(numberOfProducts / this.state.productsPerPage);
         return this.setState({ numberOfPages });
       }).catch((err) => console.log(err));
   }
@@ -77,7 +77,7 @@ class ProductsList extends Component {
 
     return (
       <>
-        <PageButtons onPageChange={this.onPageChange} numberOfPages={this.state.numberOfPages} currentPageNumber={this.state.currentPageNumber} />
+        <PageNumberButtons onPageChange={this.onPageChange} numberOfPages={this.state.numberOfPages} currentPageNumber={this.state.currentPageNumber} />
 
         <div className="products-list">
           {this.state.products.map((product, index) => (

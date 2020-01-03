@@ -1,0 +1,27 @@
+.pages {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.pages button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(151, 151, 181);
+  border-radius: 0.3rem;
+  /* color: rgb(151, 151, 181); */
+  font-size: 1.2rem;
+}
+
+.pages button:last-child {
+  margin-right: 0;
+}
+
+.pages button.currentPageButton {
+  background-color: rgba(146, 162, 255, 0.8);
+  color: white;
+  cursor: default;
+}
+
+.pages button.emptyButton {
+  cursor: default;
+}

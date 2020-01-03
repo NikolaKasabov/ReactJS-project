@@ -11,19 +11,3 @@
     width: 65%;
   }
 }
-
-
-
-.pages {
-  margin-top: 2rem;
-  display: flex;
-}
-
-.pages button {
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.pages button.currentPageButton {
-  background-color: lightblue;
-}

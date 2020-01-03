@@ -20,11 +20,13 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
 .App-main.home {
+  justify-content: center;
+
   background: linear-gradient(to bottom, rgba(235, 235, 250, 0.95), rgba(235, 235, 250, 0.95)),
     url("https://res.cloudinary.com/dq2snomti/image/upload/v1574841569/softuni-reactjs-project/home-background_rpby83.jpg")
       center / cover no-repeat;

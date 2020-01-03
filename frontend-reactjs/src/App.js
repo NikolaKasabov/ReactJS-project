@@ -18,10 +18,10 @@ function App(props) {
   const url = props.location.pathname;
   let appMainClass = 'App-main';
 
-  if (url === '/products/tv') { appMainClass += ' products-tv' }
-  else if (url === '/products/laptop') { appMainClass += ' products-laptop' }
-  else if (url === '/products/phone') { appMainClass += ' products-phone' }
-  else { appMainClass += ' home' }
+  if (url === '/products/tv') { appMainClass += ' products-tv'; }
+  else if (url === '/products/laptop') { appMainClass += ' products-laptop'; }
+  else if (url === '/products/phone') { appMainClass += ' products-phone'; }
+  else { appMainClass += ' home'; }
 
   return (
     <div className="App">
