@@ -9,7 +9,7 @@ const SearchResultContextProvider = (props) => {
     <SearchResultContext.Provider value={{ searchResult, setSearchResult }}>
       {props.children}
     </SearchResultContext.Provider>
-  )
-}
+  );
+};
 
 export default SearchResultContextProvider;

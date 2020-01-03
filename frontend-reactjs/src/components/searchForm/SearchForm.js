@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { SearchResultContext } from '../../contexts/SearchResultContext';
 import { MessagesContext } from '../../contexts/MessagesContext';
-import './styles.css';
 import fetchData from '../../utils/fetchData';
+import './styles.css';
 
 function SearchForm(props) {
   const { setSearchResult } = useContext(SearchResultContext);
@@ -10,11 +10,10 @@ function SearchForm(props) {
 
   // on user typing
   function onInputChange(ev) {
-
     // if search field is empty return no products
     if (ev.target.value === '') {
       return setSearchResult([]);
-    };
+    }
 
     // redirect to '/search', if not there already
     if (props.location.pathname !== '/search') props.history.push('/search');
@@ -38,21 +37,21 @@ function SearchForm(props) {
       url: 'http://localhost:5000/search',
       method: 'POST',
       data: {
-        'searchString': ev.target.value
-      }
+        'searchString': ev.target.value,
+      },
     }).then((result) => setSearchResult(result.data))
       .catch((err) => changeMessage(err.message, true, 3000));
   }
 
-
   return (
-    <input className="search-input"
-      type='text'
-      placeholder='search products...'
+    <input
+      className="search-input"
+      type="text"
+      placeholder="search products..."
       onChange={onInputChange}
       onBlur={(ev) => ev.target.value = ''}
     />
-  )
+  );
 }
 
 export default SearchForm;

@@ -2,15 +2,15 @@ import React from 'react';
 import uuid from 'uuid/v1';
 import './styles.css';
 
-function PageNumberButtons({ onPageChange, numberOfPages, currentPageNumber }) {
+function PageNumberButtons({ onPageChange, numberOfPages, currentPageNumber, numberOfNeighbourPages = 2 }) {
   let buttons = [];
 
   if (numberOfPages === null) return null;
 
   for (let i = 1; i <= numberOfPages; i += 1) {
     if (numberOfPages > 6
-      && (i > 1 && i < numberOfPages)
-      && (i < currentPageNumber - 1 || i > currentPageNumber + 1)) {
+      && (i !== 1 && i !== numberOfPages)
+      && (i < (currentPageNumber - numberOfNeighbourPages) || i > (currentPageNumber + numberOfNeighbourPages))) {
       continue;
     }
 
@@ -21,11 +21,11 @@ function PageNumberButtons({ onPageChange, numberOfPages, currentPageNumber }) {
     }
   }
 
-  if (numberOfPages > 6 && currentPageNumber > 3) {
+  if (numberOfPages > 6 && currentPageNumber > (2 + numberOfNeighbourPages)) {
     buttons = [].concat(buttons[0], <button className="emptyButton" key={uuid()} disabled>...</button>, buttons.slice(1));
   }
 
-  if (numberOfPages > 6 && currentPageNumber < (numberOfPages - 2)) {
+  if (numberOfPages > 6 && currentPageNumber < (numberOfPages - (1 + numberOfNeighbourPages))) {
     buttons = [].concat(buttons.slice(0, -1), <button className="emptyButton" key={uuid()} disabled>...</button>, buttons.slice(-1));
   }
 

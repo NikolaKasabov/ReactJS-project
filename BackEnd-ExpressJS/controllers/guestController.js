@@ -10,7 +10,7 @@ const { saltRounds, jwtSecret } = require('../config/config');
 module.exports = {
   productsGet: (req, res) => {
     const { category, pageNumber } = req.params;
-    const productsPerPage = 1;
+    const productsPerPage = 8;
 
     ProductModel.find({ category })
       .limit(productsPerPage)

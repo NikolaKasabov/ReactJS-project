@@ -14,7 +14,7 @@ class ProductsList extends Component {
       products: [],
       numberOfPages: null,
       currentPageNumber: 1,
-      productsPerPage: 1,
+      PRODUCTS_PER_PAGE: 1,
       isFetching: false,
       err: null,
     };
@@ -60,11 +60,10 @@ class ProductsList extends Component {
     fetchData(`http://localhost:5000/numberOfProducts/${category}`)
       .then((result) => {
         const numberOfProducts = Number(result.data.numberOfProducts);
-        const numberOfPages = Math.ceil(numberOfProducts / this.state.productsPerPage);
+        const numberOfPages = Math.ceil(numberOfProducts / this.state.PRODUCTS_PER_PAGE);
         return this.setState({ numberOfPages });
       }).catch((err) => console.log(err));
   }
-
 
   render() {
     if (this.state.isFetching) {
@@ -77,7 +76,7 @@ class ProductsList extends Component {
 
     return (
       <>
-        <PageNumberButtons onPageChange={this.onPageChange} numberOfPages={this.state.numberOfPages} currentPageNumber={this.state.currentPageNumber} />
+        <PageNumberButtons onPageChange={this.onPageChange} numberOfPages={this.state.numberOfPages} currentPageNumber={this.state.currentPageNumber} numberOfNeighbourPages={2} />
 
         <div className="products-list">
           {this.state.products.map((product, index) => (
