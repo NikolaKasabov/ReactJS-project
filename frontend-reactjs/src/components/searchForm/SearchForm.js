@@ -18,21 +18,6 @@ function SearchForm(props) {
     // redirect to '/search', if not there already
     if (props.location.pathname !== '/search') props.history.push('/search');
 
-    // old code: used before fetchData utility was implemented
-    // fetch searched products and send them to SearchResultContext
-    // fetch('http://localhost:5000/search', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     'searchString': ev.target.value,
-    //   }),
-    // }).then((result) => result.json())
-    //   .then((products) => setSearchResult(products))
-    //   .catch((err) => console.log(err));
-
     fetchData({
       url: 'http://localhost:5000/search',
       method: 'POST',

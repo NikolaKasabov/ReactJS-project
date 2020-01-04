@@ -14,7 +14,7 @@ class ProductsList extends Component {
       products: [],
       numberOfPages: null,
       currentPageNumber: 1,
-      PRODUCTS_PER_PAGE: 1,
+      PRODUCTS_PER_PAGE: 2,
       isFetching: false,
       err: null,
     };
@@ -76,7 +76,11 @@ class ProductsList extends Component {
 
     return (
       <>
-        <PageNumberButtons onPageChange={this.onPageChange} numberOfPages={this.state.numberOfPages} currentPageNumber={this.state.currentPageNumber} numberOfNeighbourPages={2} />
+        <PageNumberButtons
+          onPageChange={this.onPageChange}
+          numberOfPages={this.state.numberOfPages}
+          currentPageNumber={this.state.currentPageNumber}
+        />
 
         <div className="products-list">
           {this.state.products.map((product, index) => (

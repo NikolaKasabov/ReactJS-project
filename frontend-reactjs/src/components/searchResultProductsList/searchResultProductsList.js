@@ -15,6 +15,7 @@ function SearchResultProductsList() {
 
   useEffect(() => {
     setFoundProducts(searchResult);
+    setCurrentPageNumber(1);
   }, [searchResult]);
 
   function onPageChange(ev) {
@@ -29,7 +30,11 @@ function SearchResultProductsList() {
         ? <h1 className="search-result-title">no products found</h1>
         : (
           <>
-            <PageNumberButtons onPageChange={onPageChange} numberOfPages={Math.ceil(foundProducts.length / PRODUCTS_PER_PAGE)} currentPageNumber={currentPageNumber} />
+            <PageNumberButtons
+              onPageChange={onPageChange}
+              numberOfPages={Math.ceil(foundProducts.length / PRODUCTS_PER_PAGE)}
+              currentPageNumber={currentPageNumber}
+            />
 
             <div className="products-list">
               {/* {searchResult.map((product) => ( */}
