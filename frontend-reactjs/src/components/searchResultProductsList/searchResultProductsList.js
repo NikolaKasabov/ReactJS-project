@@ -24,33 +24,29 @@ function SearchResultProductsList() {
   }
 
   return (
-    <div>
-      {/* {searchResult.length === 0 */}
-      {foundProducts.length === 0
-        ? <h1 className="search-result-title">no products found</h1>
-        : (
-          <>
-            <PageNumberButtons
-              onPageChange={onPageChange}
-              numberOfPages={Math.ceil(foundProducts.length / PRODUCTS_PER_PAGE)}
-              currentPageNumber={currentPageNumber}
-            />
+    foundProducts.length === 0
+      ? <h1 className="search-result-title">no products found</h1>
+      : (
+        <>
+          <PageNumberButtons
+            onPageChange={onPageChange}
+            numberOfPages={Math.ceil(foundProducts.length / PRODUCTS_PER_PAGE)}
+            currentPageNumber={currentPageNumber}
+          />
 
-            <div className="products-list">
-              {/* {searchResult.map((product) => ( */}
-              {foundProducts.slice((PRODUCTS_PER_PAGE * (currentPageNumber - 1)), (PRODUCTS_PER_PAGE * currentPageNumber)).map((product) => (
-                <ProductCard
-                  key={uuid()}
-                  id={product._id}
-                  imageUrl={product.imageUrl}
-                  description={product.description}
-                  price={product.price}
-                />
-              ))}
-            </div>
-          </>
-        )}
-    </div>
+          <div className="products-list">
+            {foundProducts.slice((PRODUCTS_PER_PAGE * (currentPageNumber - 1)), (PRODUCTS_PER_PAGE * currentPageNumber)).map((product) => (
+              <ProductCard
+                key={uuid()}
+                id={product._id}
+                imageUrl={product.imageUrl}
+                description={product.description}
+                price={product.price}
+              />
+            ))}
+          </div>
+        </>
+      )
   );
 }
 
