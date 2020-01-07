@@ -20,11 +20,13 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
 .App-main.home {
+  justify-content: center;
+
   background: linear-gradient(to bottom, rgba(235, 235, 250, 0.95), rgba(235, 235, 250, 0.95)),
     url("https://res.cloudinary.com/dq2snomti/image/upload/v1574841569/softuni-reactjs-project/home-background_rpby83.jpg")
       center / cover no-repeat;
@@ -45,6 +47,12 @@
 .App-main.products-phone {
   background: linear-gradient(to bottom, rgba(235, 235, 250, 0.92), rgba(235, 235, 250, 0.92)),
     url("https://res.cloudinary.com/dq2snomti/image/upload/v1574924407/softuni-reactjs-project/phones1_background_jrjoie.jpg")
+      center / cover no-repeat;
+}
+
+.App-main.search {
+  background: linear-gradient(to bottom, rgba(235, 235, 250, 0.95), rgba(235, 235, 250, 0.95)),
+    url("https://res.cloudinary.com/dq2snomti/image/upload/v1574841569/softuni-reactjs-project/home-background_rpby83.jpg")
       center / cover no-repeat;
 }
 

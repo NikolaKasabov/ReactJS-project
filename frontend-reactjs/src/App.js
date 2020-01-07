@@ -18,10 +18,11 @@ function App(props) {
   const url = props.location.pathname;
   let appMainClass = 'App-main';
 
-  if (url === '/products/tv') { appMainClass += ' products-tv' }
-  else if (url === '/products/laptop') { appMainClass += ' products-laptop' }
-  else if (url === '/products/phone') { appMainClass += ' products-phone' }
-  else { appMainClass += ' home' }
+  if (url === '/products/tv') { appMainClass += ' products-tv'; }
+  else if (url === '/products/laptop') { appMainClass += ' products-laptop'; }
+  else if (url === '/products/phone') { appMainClass += ' products-phone'; }
+  else if (url === '/search') { appMainClass += ' search'; }
+  else { appMainClass += ' home'; }
 
   return (
     <div className="App">
@@ -33,13 +34,13 @@ function App(props) {
         <Route component={Message} />
 
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/login' component={LoginForm} />
-          <Route path='/register' component={RegisterForm} />
-          <Route path='/products/:category' component={ProductsList} />
-          <Route path='/shoppingCart' component={ShoppingCart} />
-          <Route path='/search' component={SearchResultProductsList} />
-          <Route path='/addNewProduct' component={AdminForm} />
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/register" component={RegisterForm} />
+          <Route path="/products/:category" component={ProductsList} />
+          <Route path="/shoppingCart" component={ShoppingCart} />
+          <Route path="/search" component={SearchResultProductsList} />
+          <Route path="/addNewProduct" component={AdminForm} />
           <Route component={NotFound} />
         </Switch>
       </main>

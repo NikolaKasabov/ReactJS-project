@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ProductCard from '../productCard/ProductCard';
+import PageNumberButtons from '../pageNumberButtons/PageNumberButtons';
 import fetchData from '../../utils/fetchData';
+import uuid from 'uuid/v1';
 import './styles.css';
 
 class ProductsList extends Component {
@@ -10,49 +12,57 @@ class ProductsList extends Component {
 
     this.state = {
       products: [],
+      numberOfPages: null,
+      currentPageNumber: 1,
+      PRODUCTS_PER_PAGE: 8,
       isFetching: false,
-      err: null
+      err: null,
     };
   }
 
   componentDidMount() {
     const { category } = this.props.match.params;
-
-    this.setState({ isFetching: true, err: null });
-    fetchData(`http://localhost:5000/products/${category}`)
-      .then((result) => this.setState({ products: result.data, isFetching: false }))
-      .catch((err) => this.setState({ isFetching: false, err }));
+    this.getNumberOfPagesAndAddToState(category);
+    this.fetchProductsAndAddToState(category);
   }
 
-  // update state on prop changes
+  // update state on prop changes(on product category change)
   componentDidUpdate(prevProps) {
     const { category } = this.props.match.params;
     const prevCategory = prevProps.match.params.category;
 
     if (category !== prevCategory) {
-      this.setState({ isFetching: true, err: null });
-
-      fetchData(`http://localhost:5000/products/${category}`)
-        .then((result) => this.setState({ products: result.data, isFetching: false }))
-        .catch((err) => this.setState({ isFetching: false, err }));
+      this.setState({ currentPageNumber: 1 });
+      this.getNumberOfPagesAndAddToState(category);
+      this.fetchProductsAndAddToState(category);
     }
   }
 
-  // old code: used before fetchData utility was implemented
-  // // get selected category products from the express server and add them to state
-  // fetchProductsAndAddToState = (category) => {
-  //   fetch(`http://localhost:5000/products/${category}`, {
-  //     // method: "GET",
-  //     // headers: {
-  //     //   'Accept': 'application/json',
-  //     //   'Content-Type': 'application/json',
-  //     //   'Cache': 'no-cache'
-  //     // },
-  //     credentials: 'include', // without this react will NOT send the cookies with the request to the server
-  //   }).then((dataAsReadableStream) => dataAsReadableStream.json())
-  //     .then((dataAsJson) => this.setState({ products: dataAsJson }))
-  //     .catch((err) => console.log(err));
-  // }
+  fetchProductsAndAddToState = (category, pageNumber = 1) => {
+    this.setState({ isFetching: true, err: null });
+    fetchData(`http://localhost:5000/products/${category}/${this.state.PRODUCTS_PER_PAGE}/${pageNumber}`)
+      .then((result) => this.setState({ products: result.data, isFetching: false }))
+      .catch((err) => this.setState({ isFetching: false, err }));
+  }
+
+  // on page number click
+  onPageChange = (ev) => {
+    const { category } = this.props.match.params;
+    const pageNumber = Number(ev.target.innerHTML);
+
+    this.setState({ currentPageNumber: pageNumber });
+    this.fetchProductsAndAddToState(category, pageNumber);
+  }
+
+  // get how many pages there are for product category
+  getNumberOfPagesAndAddToState = (category) => {
+    fetchData(`http://localhost:5000/numberOfProducts/${category}`)
+      .then((result) => {
+        const numberOfProducts = Number(result.data.numberOfProducts);
+        const numberOfPages = Math.ceil(numberOfProducts / this.state.PRODUCTS_PER_PAGE);
+        return this.setState({ numberOfPages });
+      }).catch((err) => console.log(err));
+  }
 
   render() {
     if (this.state.isFetching) {
@@ -64,17 +74,25 @@ class ProductsList extends Component {
     }
 
     return (
-      <div className="products-list">
-        {this.state.products.map((product, index) => (
-          <ProductCard
-            key={index}
-            id={product._id}
-            imageUrl={product.imageUrl}
-            description={product.description}
-            price={product.price}
-          />
-        ))}
-      </div>
+      <>
+        <PageNumberButtons
+          onPageChange={this.onPageChange}
+          numberOfPages={this.state.numberOfPages}
+          currentPageNumber={this.state.currentPageNumber}
+        />
+
+        <div className="products-list">
+          {this.state.products.map((product, index) => (
+            <ProductCard
+              key={uuid()}
+              id={product._id}
+              imageUrl={product.imageUrl}
+              description={product.description}
+              price={product.price}
+            />
+          ))}
+        </div>
+      </>
     );
   }
 }

@@ -1,6 +1,8 @@
 const myCloudinary = require('../config/cloudinaryConfig');
 const ProductModel = require('../models/Product.js');
 
+const increaseOrDecreaseProductsNumber = require('../utils/increaseOrDecreaseProductsNumber');
+
 module.exports = {
   addNewProductToDbPost: (req, res) => {
     const { description, price, category } = req.body;
@@ -28,8 +30,11 @@ module.exports = {
         imageUrl,
         price: Number(price),
         category
-      }).then(() => res.send({ 'message': 'product added successfully' }))
-        .catch((err) => res.send({ 'error': err.toString() }));
+      }).then(() => {
+        res.send({ 'message': 'product added successfully' });
+        // increase number of products
+        increaseOrDecreaseProductsNumber(category, 1);
+      }).catch((err) => res.send({ 'error': err.toString() }));
 
     }).catch((err) => console.log(err));
   },
@@ -42,8 +47,12 @@ module.exports = {
       res.status(401).send({ 'error': 'only the administrator can delete products' });
     } else {
       ProductModel.findByIdAndDelete(productId)
-        .then(() => res.send({ 'message': 'product successfully deleted' }))
-        .catch(() => res.send({ 'error': 'something went wrong' }));
+        .then((deletedProduct) => {
+          res.send({ 'message': 'product successfully deleted' });
+          // decrease number of products 
+          const deletedProductCategory = deletedProduct.category;
+          increaseOrDecreaseProductsNumber(deletedProductCategory, -1);
+        }).catch(() => res.send({ 'error': 'something went wrong' }));
     }
   },
 };

@@ -4,14 +4,28 @@ const jwt = require('jsonwebtoken');
 
 const UserModel = require('../models/User');
 const ProductModel = require('../models/Product');
+const NumberOfProductsModel = require('../models/NumberOfProducts');
 const { saltRounds, jwtSecret } = require('../config/config');
+
 
 module.exports = {
   productsGet: (req, res) => {
-    const { category } = req.params;
+    let { category, productsPerPage, pageNumber } = req.params;
+    productsPerPage = Number(productsPerPage);
+    pageNumber = Number(pageNumber);
 
     ProductModel.find({ category })
+      .limit(productsPerPage)
+      .skip(productsPerPage * (Number(pageNumber) - 1))
       .then((products) => res.json(products))
+      .catch((err) => console.log(err));
+  },
+
+  numberOfProductsGet: (req, res) => {
+    const { category } = req.params;
+
+    NumberOfProductsModel.find({})
+      .then((result) => res.json({ 'numberOfProducts': result[0][category] }))
       .catch((err) => console.log(err));
   },
 
