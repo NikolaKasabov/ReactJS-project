@@ -7,14 +7,16 @@ const ProductModel = require('../models/Product');
 const NumberOfProductsModel = require('../models/NumberOfProducts');
 const { saltRounds, jwtSecret } = require('../config/config');
 
+
 module.exports = {
   productsGet: (req, res) => {
-    const { category, pageNumber } = req.params;
-    const PRODUCTS_PER_PAGE = 2;
+    let { category, productsPerPage, pageNumber } = req.params;
+    productsPerPage = Number(productsPerPage);
+    pageNumber = Number(pageNumber);
 
     ProductModel.find({ category })
-      .limit(PRODUCTS_PER_PAGE)
-      .skip(PRODUCTS_PER_PAGE * (Number(pageNumber) - 1))
+      .limit(productsPerPage)
+      .skip(productsPerPage * (Number(pageNumber) - 1))
       .then((products) => res.json(products))
       .catch((err) => console.log(err));
   },

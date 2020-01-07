@@ -14,7 +14,7 @@ class ProductsList extends Component {
       products: [],
       numberOfPages: null,
       currentPageNumber: 1,
-      PRODUCTS_PER_PAGE: 2,
+      PRODUCTS_PER_PAGE: 8,
       isFetching: false,
       err: null,
     };
@@ -40,7 +40,7 @@ class ProductsList extends Component {
 
   fetchProductsAndAddToState = (category, pageNumber = 1) => {
     this.setState({ isFetching: true, err: null });
-    fetchData(`http://localhost:5000/products/${category}/${pageNumber}`)
+    fetchData(`http://localhost:5000/products/${category}/${this.state.PRODUCTS_PER_PAGE}/${pageNumber}`)
       .then((result) => this.setState({ products: result.data, isFetching: false }))
       .catch((err) => this.setState({ isFetching: false, err }));
   }
@@ -56,7 +56,6 @@ class ProductsList extends Component {
 
   // get how many pages there are for product category
   getNumberOfPagesAndAddToState = (category) => {
-
     fetchData(`http://localhost:5000/numberOfProducts/${category}`)
       .then((result) => {
         const numberOfProducts = Number(result.data.numberOfProducts);

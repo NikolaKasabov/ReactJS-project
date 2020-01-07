@@ -12,7 +12,7 @@ const sendErrorIfNotAdmin = require('../middlewares/sendErrorIfNotAdmin');
 
 module.exports = (app) => {
 
-  app.get('/products/:category/:pageNumber', guestController.productsGet);
+  app.get('/products/:category/:productsPerPage/:pageNumber', guestController.productsGet);
 
   app.get('/numberOfProducts/:category', guestController.numberOfProductsGet);
 
